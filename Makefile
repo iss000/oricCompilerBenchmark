@@ -97,14 +97,11 @@ DEPS    := Makefile $(wildcard src/*)
 all:
 	@for i in cc65 osdk vbcc; do \
 	\
-	make --no-print-directory with=$$i with-$$i DST=tap-dummy ITEM=dummy ITEMNAME=dummy-$$i ITEMDEFS= && \
-	\
-	make --no-print-directory with=$$i with-$$i DST=tap-aes256 ITEM=aes256 ITEMNAME=aes256-$$i ITEMDEFS= && \
-	make --no-print-directory with=$$i with-$$i DST=tap-aes256-tab ITEM=aes256 ITEMNAME=aes256-tab-$$i ITEMDEFS=-DBACK_TO_TABLES && \
+	make --no-print-directory with=$$i DST=tap-dummy ITEM=dummy ITEMNAME=dummy-$$i ITEMDEFS= && \
+	make --no-print-directory with=$$i DST=tap-aes256 ITEM=aes256 ITEMNAME=aes256-$$i ITEMDEFS= && \
+	make --no-print-directory with=$$i DST=tap-aes256-tab ITEM=aes256 ITEMNAME=aes256-tab-$$i ITEMDEFS=-DBACK_TO_TABLES && \
 	\
 	true; done
 
 clean:
 	@rm -rf obj-*
-
-
