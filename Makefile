@@ -105,7 +105,6 @@ all:
 
 clean:
 	@rm -rf obj-*
-<<<<<<< HEAD
 
 
 # To be added ... one day.
@@ -115,5 +114,3 @@ clean:
 # https://github.com/Peppar/llvm-C65 + https://github.com/Peppar/llvm-C65-sfc-example
 # https://gitlab.com/camelot/kickc/-/releases
 # https://github.com/RevCurtisP/C02
-=======
->>>>>>> 6637bb214da3c3d38cbaa319ce9d4477f3f0cfbb
