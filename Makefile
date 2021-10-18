@@ -97,15 +97,15 @@ DEPS    := Makefile $(wildcard src/*)
 all:
 	@for i in cc65 osdk vbcc; do \
 	\
-	make --no-print-directory with=$$i with-$$i DST=tap-dummy ITEM=dummy ITEMNAME=dummy-$$i ITEMDEFS= && \
-	\
-	make --no-print-directory with=$$i with-$$i DST=tap-aes256 ITEM=aes256 ITEMNAME=aes256-$$i ITEMDEFS= && \
-	make --no-print-directory with=$$i with-$$i DST=tap-aes256-tab ITEM=aes256 ITEMNAME=aes256-tab-$$i ITEMDEFS=-DBACK_TO_TABLES && \
+	make --no-print-directory with=$$i DST=tap-dummy ITEM=dummy ITEMNAME=dummy-$$i ITEMDEFS= && \
+	make --no-print-directory with=$$i DST=tap-aes256 ITEM=aes256 ITEMNAME=aes256-$$i ITEMDEFS= && \
+	make --no-print-directory with=$$i DST=tap-aes256-tab ITEM=aes256 ITEMNAME=aes256-tab-$$i ITEMDEFS=-DBACK_TO_TABLES && \
 	\
 	true; done
 
 clean:
 	@rm -rf obj-*
+<<<<<<< HEAD
 
 
 # To be added ... one day.
@@ -115,3 +115,5 @@ clean:
 # https://github.com/Peppar/llvm-C65 + https://github.com/Peppar/llvm-C65-sfc-example
 # https://gitlab.com/camelot/kickc/-/releases
 # https://github.com/RevCurtisP/C02
+=======
+>>>>>>> 6637bb214da3c3d38cbaa319ce9d4477f3f0cfbb
