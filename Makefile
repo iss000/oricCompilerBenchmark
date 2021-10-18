@@ -108,3 +108,10 @@ clean:
 	@rm -rf obj-*
 
 
+# To be added ... one day.
+# https://github.com/sehugg/sdcc-m6502
+# https://github.com/jacobly0/llvm-project
+# https://github.com/c64scene-ar/llvm-6502
+# https://github.com/Peppar/llvm-C65 + https://github.com/Peppar/llvm-C65-sfc-example
+# https://gitlab.com/camelot/kickc/-/releases
+# https://github.com/RevCurtisP/C02
