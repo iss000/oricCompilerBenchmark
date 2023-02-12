@@ -1,0 +1,12 @@
+lda {m2}
+and #<{c1}
+sta {m1}
+lda {m2}+1
+and #>{c1}
+sta {m1}+1
+lda {m2}+2
+and #<{c1}>>$10
+sta {m1}+2
+lda {m2}+3
+and #>{c1}>>$10
+sta {m1}+3

@@ -1,0 +1,2 @@
+stx $ff
+and $ff

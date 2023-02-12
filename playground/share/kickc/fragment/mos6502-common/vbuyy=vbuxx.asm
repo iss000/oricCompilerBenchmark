@@ -1,0 +1,2 @@
+stx $ff
+ldy $ff

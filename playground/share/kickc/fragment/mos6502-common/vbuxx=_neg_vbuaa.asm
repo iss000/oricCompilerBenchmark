@@ -1,0 +1,3 @@
+eor #$ff
+tax
+inx

@@ -1,0 +1,2 @@
+sty $ff
+ldx $ff

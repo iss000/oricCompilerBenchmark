@@ -1,0 +1,8 @@
+{
+    "extension": "bin",
+    "link": "none.cfg",
+    "start_address": "@START@",
+    "cpu": "MOS6502X",
+    "interrupt": "hardware_all",
+    "emulator": "mos6502vm"
+}

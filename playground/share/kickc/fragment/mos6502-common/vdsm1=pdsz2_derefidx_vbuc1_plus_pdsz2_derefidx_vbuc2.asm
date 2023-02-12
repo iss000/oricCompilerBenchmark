@@ -1,0 +1,21 @@
+clc
+ldy #{c2}
+lda ({z2}),y
+ldy #{c1}
+adc ({z2}),y
+sta {m1}
+ldy #{c2}+1
+lda ({z2}),y
+ldy #{c1}+1
+adc ({z2}),y
+sta {m1}+1
+ldy #{c2}+2
+lda ({z2}),y
+ldy #{c1}+2
+adc ({z2}),y
+sta {m1}+2
+ldy #{c2}+3
+lda ({z2}),y
+ldy #{c1}+3
+adc ({z2}),y
+sta {m1}+3

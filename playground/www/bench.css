@@ -1,0 +1,72 @@
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+body {
+  margin: 0;
+  padding: 8px;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  background: #ccc;
+  color: #111;
+  font-family: "Tahoma", sans-serif;
+  font-size: 18px;
+  line-height: 1.62em;
+}
+
+h2,h5,h6 {
+  margin: 8px;
+}
+
+h5 {
+  font-weight: normal;
+  font-style: italic;
+}
+
+
+th {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0;
+  border: 0;
+  font: inherit;
+  font-weight: bold;
+  vertical-align: middle;
+  background: #dbdbdb;
+  padding: 4px 8px 4px 8px;
+  text-shadow: 1px 1px #fff;
+  border-right: 1px solid #c8c7c7;
+  color: #111;
+  border-bottom: 3px solid #ccc;
+  min-width: 90px;
+  min-height: 30px;
+  cursor: pointer;
+}
+
+td {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0;
+  padding: 2px 8px 2px 8px;
+  border: 0;
+  font: inherit;
+  vertical-align: middle;
+  background: #ebebeb;
+  color: #444;
+  border-right: 1px solid #c8c7c7;
+  border-bottom: 1px solid #c8c7c7;
+  min-width: 90px;
+  min-height: 30px;
+}
+
+p, a.legend {
+  margin: 2px;
+  padding: 4px;
+  font-size: 16px;
+  line-height: 0.8em;
+}

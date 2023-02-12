@@ -1,0 +1,3 @@
+dey
+tya
+eor #$ff

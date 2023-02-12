@@ -4,20 +4,21 @@
  |  _| .'|_'_| |_ -|_ -|
  |_| |__,|_,_|_|___|___|
   iss@raxiss(c)2020-2023
+
 ```
 
-# MOS6502-compiler-benchmark
+# MOS6502 compiler benchmark (WIP).
 
 ---
 
-MOS6502 compiler benchmark (WIP).
-
+This is work-in-progress and frequenty updates are possible.
 All feedback, bug reporting and opinions are highly appreciated!
+To discuss use pull-requests, issue tracking or [Defence-force](#) forum.
 
 ---
 
 #### Goal:
-  Simple and fair benchmark for cross compilers targeting MOS6502 processor.
+  Simple and fair benchmark for C cross compilers targeting MOS6502 processor.
 
 ### C Compilers:
   * ` cc65             `
@@ -30,10 +31,10 @@ All feedback, bug reporting and opinions are highly appreciated!
   * ` vbcc             `
 
 ---
-#### Requirements:
+#### Requirements
   * Host: Linux
   * Tools: gcc, make, cmake, lua, bash/sh
-  * Compilers: open source only, so they can be build under host
+  * Compilers: open source only, so they can be build for host OS
 
 #### Restrictions for included samples:
   * Standard C code
@@ -43,10 +44,10 @@ All feedback, bug reporting and opinions are highly appreciated!
 
 ###### Build and install included 6502 emulator mos6502vm:
 ```
-  mkdir build
-  cd build
-  cmake ..
-  make all install
+  $ mkdir build
+  $ cd build
+  $ cmake ..
+  $ make all install
 ```
 
 ###### Copy or symlink compiler toolschains in `bin/` directory:
@@ -90,13 +91,14 @@ All feedback, bug reporting and opinions are highly appreciated!
   └── mos6502vm (built as described above)
 ```
 
-##### Run benchmarks
+##### Running benchmarks
 ```
   $ cd playground
   $ ./run-all-benchmarks.sh
 ```
-  Results are stored in `playground/www/` directory as JS files.
-  Load `bench.html` in browser.
+  Results are stored in `playground/www/` directory (JS files).
+  Load `bench.html` in browser for visual representation.
+  See [HACKING.md](playground/HACKING.md) for details about benchmarks.
 
 ##### Credits
   * Mike Chambers for [Fake6502 CPU emulator core v1.1](https://github.com/omarandlorraine/fake6502)

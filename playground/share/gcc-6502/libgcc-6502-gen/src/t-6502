@@ -1,0 +1,71 @@
+LIB1ASMSRC = 6502/lib1funcs.S
+# NOTE: _fixunssfdi is here because the C implementation in libgcc2.c does not
+# build on this system. It's not actually used (or implemented).
+LIB1ASMFUNCS =  \
+  _bswapsi2     \
+  _bswapdi2     \
+  _fixunssfdi   \
+  _cmpsi2       \
+  _neghi2       \
+  _negsi2       \
+  _negdi2       \
+  _ashlqi3      \
+  _lshrqi3      \
+  _ashrqi3      \
+  _ashlhi3      \
+  _lshrhi3      \
+  _ashrhi3      \
+  _ashlsi3      \
+  _lshrsi3      \
+  _ashrsi3      \
+  _mulqi3       \
+  _mulhi3       \
+  _mulsi3       \
+  _udivqi3      \
+  _umodqi3      \
+  _udivhi3      \
+  _umodhi3      \
+  _divhi3       \
+  _modhi3       \
+  _udivsi3      \
+  _umodsi3      \
+  _divsi3       \
+  _modsi3       \
+  _ltsf2        \
+  _gesf2        \
+  _gtsf2        \
+  _lesf2        \
+  _eqsf2        \
+  _nesf2        \
+  _addsf3       \
+  _subsf3       \
+  _mulsf3       \
+  _divsf3       \
+  _fixsfsi      \
+  _fixunssfsi   \
+  _floatsisf    \
+  _floatunsisf  \
+  _cmpdi2       \
+  _ucmpdi2      \
+  _ashldi3      \
+  _lshrdi3      \
+  _ashrdi3      \
+  _muldi3       \
+  _udivdi3      \
+  _umoddi3
+
+# __floatundisf __floatdisf __fixunssfdi __fixsfdi
+# __divdi3 __moddi3
+
+LIB2ADDEH =
+
+LIB2ADD += $(srcdir)/config/6502/softregs.S \
+           $(srcdir)/config/6502/softfpregs.S \
+           $(srcdir)/config/6502/fprenorm-right.S \
+           $(srcdir)/config/6502/fprenorm-left.S \
+           $(srcdir)/config/6502/savestack.S \
+           $(srcdir)/config/6502/savestack_sp.S \
+
+crt0.o: $(srcdir)/config/6502/crt0.S
+        $(gcc_compile) -c $<
+

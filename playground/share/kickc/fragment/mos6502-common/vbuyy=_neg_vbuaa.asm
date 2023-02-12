@@ -1,0 +1,3 @@
+eor #$ff
+tay
+iny

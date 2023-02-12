@@ -1,0 +1,12 @@
+lda {m2}
+eor #$ff
+sta {m1}
+lda {m2}+1
+eor #$ff
+sta {m1}+1
+lda {m2}+2
+eor #$ff
+sta {m1}+2
+lda {m2}+3
+eor #$ff
+sta {m1}+3
