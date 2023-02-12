@@ -13,11 +13,11 @@
 
 This is work-in-progress and frequenty updates are possible.
 All feedback, bug reporting and opinions are highly appreciated!
-To discuss use pull-requests, issue tracking or [Defence-force](#) forum.
+To discuss use pull-requests, issue tracking or [Defence-force](https://forum.defence-force.org/viewtopic.php?t=2501) forum.
 
 ---
 
-## Goal:
+### Goal:
   Simple and fair benchmark for C cross compilers targeting MOS6502 processor.
 
 ### C Compilers:
