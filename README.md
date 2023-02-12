@@ -17,7 +17,7 @@ To discuss use pull-requests, issue tracking or [Defence-force](#) forum.
 
 ---
 
-#### Goal:
+## Goal:
   Simple and fair benchmark for C cross compilers targeting MOS6502 processor.
 
 ### C Compilers:
