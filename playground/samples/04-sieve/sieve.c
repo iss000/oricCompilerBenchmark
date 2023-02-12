@@ -1,54 +1,59 @@
-/*
- * Calculate all primes up to a specific number.
- */
-
 #include <conio.h>
 
-/*****************************************************************************/
-/*                                   Data                                    */
-/*****************************************************************************/
+#define number 4096
 
+static int i,j;
+static int primes[number+1];
+static char buf[32];
 
+static void decprint(int v)
+{
+  // dec print
+  for(j=0; j < sizeof(buf)/sizeof(char);)
+  {
+    buf[j++] = '0' + v % 10;
+    v /= 10;
+    if(0==v)
+      break;
+  }
 
-#define COUNT           16384           /* Up to what number? */
-#define SQRT_COUNT      128             /* Sqrt of COUNT */
-
-static unsigned char Sieve[COUNT];
-
-
-
-/*****************************************************************************/
-/*                                   Code                                    */
-/*****************************************************************************/
+  while(j > 0)
+  {
+    --j;
+    _putc(buf[j]);
+  }
+  _putc(' ');
+}
 
 int main(void)
 {
-  /* This is an example where register variables make sense */
-  register unsigned char* S;
-  register unsigned       I;
-  register unsigned       J;
+  //populating array with naturals numbers
+  for(i = 2; i<=number; i++)
+    primes[i] = i;
 
-  /* Execute the sieve */
-  I = 2;
-  while(I < SQRT_COUNT)
+  i = 2;
+  while((i*i) <= number)
   {
-    if(Sieve[I] == 0)
+    if(primes[i] != 0)
     {
-      /* Prime number - mark multiples */
-      J = I*2;
-      S = &Sieve[J];
-      while(J < COUNT)
+      for(j=2; j<number; j++)
       {
-        *S = 1;
-        S += I;
-        J += I;
+        if(primes[i]*j > number)
+          break;
+        else
+          // Instead of deleteing , making elemnets 0
+          primes[primes[i]*j]=0;
       }
     }
-    ++I;
+    i++;
+  }
+
+  for(i = 2; i<=number; i++)
+  {
+    //If number is not 0 then it is prime
+    if(primes[i]!=0)
+      decprint(primes[i]);
   }
 
   return 0;
 }
-
-
-
