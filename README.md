@@ -1,4 +1,6 @@
 # oricCompilerBenchmark
+### Obsolette! for archive purposes only. 
+
 Simple C compiler benchmark targeting
 Oric-1/Atmos/Telestrat/Pravetz-8D 8-bit retro computers.
 
