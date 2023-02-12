@@ -19,7 +19,7 @@ All feedback, bug reporting and opinions are highly appreciated!
 #### Goal:
   Simple and fair benchmark for cross compilers targeting MOS6502 processor.
 
-### C Compilers (open source only):
+### C Compilers:
   * ` cc65             `
   * ` gcc-6502-bits    `
   * ` kickc            `
@@ -49,7 +49,7 @@ All feedback, bug reporting and opinions are highly appreciated!
   make all install
 ```
 
-###### Copy or symlink compiler toolschains in bin/ directory:
+###### Copy or symlink compiler toolschains in `bin/` directory:
 ```
   bin/
   ├── cc65
@@ -95,7 +95,8 @@ All feedback, bug reporting and opinions are highly appreciated!
   $ cd playground
   $ ./run-all-benchmarks.sh
 ```
-  Results are stored in playground/www/ directory as JS files.
+  Results are stored in `playground/www/` directory as JS files.
+  Load `bench.html` in browser.
 
 ##### Credits
   * Mike Chambers for [Fake6502 CPU emulator core v1.1](https://github.com/omarandlorraine/fake6502)
