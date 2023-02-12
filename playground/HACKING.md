@@ -1,6 +1,6 @@
 ### Hacking the benchmarks
 
-All test are coded in `tools/bench.lua` file.
+All tests are coded in `tools/bench.lua` file.
 
 ##### Usage (`playground/` is current directory):
 ```
@@ -36,8 +36,8 @@ Run only `dummy` speed test with all compilers:
 
 Useful variables to control the output from compilation and run phases:
 
-  `verbose = false`  verbose compile and run
-  `debug_compile = 0`  verbose compilation level (0,1,2,3)
-  `debug_run_info = 1` mos6502vm shows some info (0,1)
-  `debug_run_dump = 0` dumps mos6502vm memory to file (0,1)
-  `debug_run_trace = 0` 6502 step-by-step disassembler (0,1,2)
+ * `verbose = false`  verbose compile and run
+ * `debug_compile = 0`  verbose compilation level (0,1,2,3)
+ * `debug_run_info = 1` mos6502vm shows some info (0,1)
+ * `debug_run_dump = 0` dumps mos6502vm memory to file (0,1)
+ * `debug_run_trace = 0` 6502 step-by-step disassembler (0,1,2)
