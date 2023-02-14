@@ -2,22 +2,22 @@ var date_size = "2023-02-14";
 
 var opt_size = {
 	"kickc": "",
-	"gcc-6502": "-O2",
-	"sdcc": "--opt-code-size",
+	"llvm-mos": "-O2",
+	"vbcc": "-O=991",
 	"osdk-lcc65": "-O2",
 	"cc65": "-O",
-	"vbcc": "-O=991",
-	"llvm-mos": "-O2",
+	"gcc-6502": "-O2",
+	"sdcc": "--opt-code-size",
 };
 
 var opt_speed = {
 	"kickc": "",
-	"gcc-6502": "-O3",
-	"sdcc": "--opt-code-speed",
+	"llvm-mos": "-O3",
+	"vbcc": "-O=1023",
 	"osdk-lcc65": "-O3",
 	"cc65": "-Oirs",
-	"vbcc": "-O=1023",
-	"llvm-mos": "-O3",
+	"gcc-6502": "-O3",
+	"sdcc": "--opt-code-speed",
 };
 
 var bench_size = {
