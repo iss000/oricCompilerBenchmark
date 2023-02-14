@@ -28,9 +28,27 @@ var benches = [
   'radix_sort',
   'shell_sort',
   'heap_sort',
+  'shuffle',
 ];
 
+var resultsOpt = 'size';
 var resultsMode = 'size';
+
+var resultsOptHTML = {
+  'size': '<a class="bo">Optimized for: size</a>',
+  'speed': '<a class="bo">Optimized for: speed</a>',
+};
+
+var resultsModeHTML = {
+  'size': '<a class="bo">size,</a> <a class="it">bytes</a>',
+  'speed': '<a class="bo">time,</a> <a class="it">cpu cycles</a>',
+};
+
+var resultsModeRelHTML = {
+  'size': '<a class="bo">size,</a>',
+  'speed': '<a class="bo">time,</a>',
+};
+
 var resultsRelative = false;
 var resultsRelativeBase = 0;
 var dataNumbers = [];
@@ -40,24 +58,24 @@ function updateResults(mode) {
   resultsRelative = false;
 
   var data;
-  var date;
-  if(mode === "size") {
+  var opt;
+  if(resultsOpt === "size") {
       data = bench_size;
-      date = date_size;
+      opt = opt_size;
   }
-  if(mode === "speed") {
+  if(resultsOpt === "speed") {
     data = bench_speed;
-    date = date_speed;
+    opt = opt_speed;
   }
 
-  document.getElementById('title').innerText = 'MOS6502 compiler benchmark ('+date+')';
-  document.getElementById('th_00').innerText = resultsMode;
+  document.getElementById('th_10').innerHTML = resultsModeHTML[resultsMode];
+
   dataNumbers = [];
   for(var i=0;i<benches.length;i++) {
     var idx = '00'+i;
     idx = 'tr_'+idx.substr(idx.length-2)
     var tr = document.getElementById(idx);
-    var dat = data[benches[i]];
+    var dat = data[benches[i]][resultsMode];
     tr.cells[0].innerText = benches[i].replaceAll(/_/g,'-');
 
     for(var j=1; j<tr.cells.length; j++) {
@@ -81,7 +99,8 @@ function updateResultsRel(comp) {
     resultsRelative = true;
     resultsRelativeBase = comp;
 
-    document.getElementById('th_00').innerText = resultsMode+" ("+compilers[comp]+")";
+    document.getElementById('th_10').innerHTML = resultsModeRelHTML[resultsMode]
+      +'&nbsp;<a class="it""> (vs. '+compilers[comp]+')</a>';
 
     for(var i=0;i<benches.length;i++) {
       var idx = '00'+i;
@@ -89,14 +108,38 @@ function updateResultsRel(comp) {
       var tr = document.getElementById(idx);
 
       var ref = dataNumbers[i*compilers.length+comp];
-      // console.log(i,ref);
       for(var j=1; j<tr.cells.length; j++) {
         var num = dataNumbers[i*compilers.length+j-1]/ref;
         var cell = tr.cells[j];
-        cell.innerText = num.toFixed(2);
+        cell.innerText = num.toFixed(comp===j-1? 0:2);
         if(!((Number(num)===num)&&(Number(ref)===ref))) cell.style['color'] = '#ebebeb';
         else cell.style['color'] = (num<1)?'darkgreen':(num==1)? '':'darkred';
       }
     }
   }
+}
+
+function updateOpt(mode) {
+  resultsOpt = mode;
+
+  var date = "size" === resultsOpt? date_size : date_speed;
+  document.getElementById('title').innerHTML = '<h2><a href="#legend">MOS6502</a> compiler benchmark ('+date+')</h2>';
+  document.getElementById('th_00').innerHTML = resultsOptHTML[resultsOpt];
+
+  var opt = "size" === resultsOpt? opt_size : opt_speed;
+  for(var i=0;i<compilers.length;i++)
+    document.getElementById('op_'+i).innerText = opt[compilers[i]];
+
+  updateResults(resultsMode);
+}
+
+function toggleOpt() {
+  updateOpt((resultsOpt === "size")?'speed':'size');
+}
+
+function setupPage() {
+  var date = "size" === resultsOpt? date_size : date_speed;
+  var arc = document.getElementById('archive').innerHTML;
+  document.getElementById('archive').innerHTML = arc.replaceAll(/@/g,date);
+  updateOpt('size');
 }

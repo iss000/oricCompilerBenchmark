@@ -36,9 +36,6 @@ newLink.type = 'image/x-icon';
 newLink.href = 'data:image/png;base64,'+favIcon;
 docHead.appendChild(newLink);
 })();</script>
-<script>
-var nil = "B";
-</script>
 <script src="bench-size.js"></script>
 <script src="bench-speed.js"></script>
 <script src="bench.js"></script>
@@ -46,22 +43,32 @@ var nil = "B";
 
 <body>
 <h2 id="title">MOS6502 compiler benchmark</h2>
-<h5>Click on header cells to change visualization</h5>
+<br>
 <div id="div-table">
-<table>
-  <thead onmousedown="return false" onselectstart="return false">
+<table onmousedown="return false" onselectstart="return false">
+  <thead>
     <tr align="center">
-      <th style="min-width:190px;" align="center" id="th_00" onclick='toggleResults();'></th>
-      <th align="center" onclick="updateResultsRel(0)">cc65</th>
-      <th align="center" onclick="updateResultsRel(1)">gcc-6502</th>
-      <th align="center" onclick="updateResultsRel(2)">kickc</th>
-      <th align="center" onclick="updateResultsRel(3)">llvm-mos</th>
-      <th align="center" onclick="updateResultsRel(4)">osdk-lcc65</th>
-      <th align="center" onclick="updateResultsRel(5)">sdcc</th>
-      <th align="center" onclick="updateResultsRel(6)">vbcc</th>
+      <th style="min-width:200px;" onclick='toggleOpt();'><div id="th_00"></div></th>
+      <th onclick="updateResultsRel(0)">cc65</th>
+      <th onclick="updateResultsRel(1)">gcc-6502</th>
+      <th onclick="updateResultsRel(2)">kickc</th>
+      <th onclick="updateResultsRel(3)">llvm-mos</th>
+      <th onclick="updateResultsRel(4)">osdk-lcc65</th>
+      <th onclick="updateResultsRel(5)">sdcc</th>
+      <th onclick="updateResultsRel(6)">vbcc</th>
     </tr>
   </thead>
 <tbody>
+  <tr class="it" align="center">
+    <th style="min-width:200px;" onclick='toggleResults();'><div id="th_10"></div></th>
+    <td id="op_0"></td>
+    <td id="op_1"></td>
+    <td id="op_2"></td>
+    <td id="op_3"></td>
+    <td id="op_4"></td>
+    <td id="op_5"></td>
+    <td id="op_6"></td>
+  </tr>
   <tr align="right" id="tr_00">
     <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
   </tr>
@@ -119,15 +126,28 @@ var nil = "B";
   <tr align="right" id="tr_18">
     <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
   </tr>
+  <tr align="right" id="tr_19">
+    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
 </tbody>
 </table>
 </div>
 <hr>
+<h5>
+<p><a name="legend">Legend:</a></p>
 <p><a class="legend" style="color:darkred;font-weight:bold;">C</a> - Compilation failed.</p>
-<p><a class="legend" style="color:darkred;font-weight:bold;">T</a> - Time-out error - test runs longer than the preset limit (5 min).</p>
+<p><a class="legend" style="color:darkred;font-weight:bold;">T</a> - Time-out error - test runs longer than the preset time limit 300000000 cycles (5 min. for 1 MHz cpu).</p>
 <p><a class="legend" style="color:darkred;font-weight:bold;">R</a> - Run-time error - the output doesn't match the expected one.</p>
 <hr>
+<p><a name="legend">Click on header cells to change visualization.</a></p>
+<p><a name="legend">Size numbers are length of the compiled binary in bytes. The lower is better.</a></p>
+<p><a name="legend">Speed numbers are cpu cycles counted for execution. The lower is better.</a></p>
+<hr>
+<p id="archive" class="legend">Compilation intermediate files: <a href="bench-data-@.tar.bz2">bench-data-@.tar.bz2</a></p>
+</h5>
+<hr>
 </body>
-<script>updateResults('size')</script>
+<script>setupPage()</script>
 <h6 align="left">copyright &copy; 2012-2023, [iss@raxiss]</h6>
 </html>
+

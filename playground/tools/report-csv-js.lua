@@ -21,6 +21,11 @@ local data = {}
 local benches = {}
 local compilers = {}
 
+--
+-- load optimizations params
+--
+dofile(arg[0]:gsub('report.csv.js.lua','bench-params.lua'))
+
 local function split(text,delimiter)
   local list,pos = {},1
   while 1 do
@@ -71,22 +76,32 @@ end
 local function o(...) fo:write(string.format(...)) end
 
 local js = 'var bench_'..opt..' = {\n'
+local row = '\t%s: { size: [ %s ], speed: [ %s ] },\n'
 local jsend = '};\n'
 
-local row = '\t%s: [ '
-local rowend = ' ],\n'
-
-local cell = '%s,'
 
 local function report_js(opt)
   --
-  if date then o('var date_'..opt..' = "%s";',date) end
+  if date then o('var date_'..opt..' = "%s";\n\n',date) end
+  --
+  o("var opt_size = {\n")
+  for i,j in pairs(compilers_make_param_size) do
+    o('\t"%s": "%s",\n',i,j)
+  end
+  o("};\n\n")
+  --
+  o("var opt_speed = {\n")
+  for i,j in pairs(compilers_make_param_speed) do
+    o('\t"%s": "%s",\n',i,j)
+  end
+  o("};\n\n")
   --
   o(js)
   for b = 1,#benches do
-    o(row,benches[b]:gsub('-','_'))
+    -- size
+    local sizes =''
     for c = 1,#compilers do
-      local val = data[compilers[c]..'+'..benches[b]..'+'..opt]
+      local val = data[compilers[c]..'+'..benches[b]..'+size']
       local status = tonumber(data[compilers[c]..'+'..benches[b]..'+status'])
       if 0 == status then
         -- OK, no error
@@ -97,9 +112,25 @@ local function report_js(opt)
       elseif 3 == status then
         val = '"R"' -- Run-time error
       end
-      o(cell,val)
+      sizes = sizes..val..','
     end
-    o(rowend)
+    -- speed
+    local speeds =''
+    for c = 1,#compilers do
+      local val = data[compilers[c]..'+'..benches[b]..'+speed']
+      local status = tonumber(data[compilers[c]..'+'..benches[b]..'+status'])
+      if 0 == status then
+        -- OK, no error
+      elseif 1 == status then
+        val = '"C"' -- Compile error
+      elseif 2 == status then
+        val = '"T"' -- Time-out error
+      elseif 3 == status then
+        val = '"R"' -- Run-time error
+      end
+      speeds = speeds..val..','
+    end
+    o(row,benches[b]:gsub('-','_'),sizes,speeds)
   end
   o(jsend)
 end

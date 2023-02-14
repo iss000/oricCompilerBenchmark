@@ -15,7 +15,7 @@ local csvfile = 'www/bench-'..opt..'.csv'
 
 local verbose = false         -- verbose compile and run
 
-local debug_compile = 0       -- verbose compilation level (0,1,2,3)
+local debug_compile = 1       -- verbose compilation level (0,1,2,3)
 local debug_run_info = 1      -- mos6502vm shows some info (0,1)
 local debug_run_dump = 0      -- dumps mos6502vm memory to file (0,1)
 local debug_run_trace = 0     -- 6502 step-by-step disassembler (0,1,2)
@@ -29,6 +29,11 @@ local function err(s) print('[ERR] '..(s or 'Unknown error.')) os.exit(1) end
 local function msg(...) if verbose then print(...) end end
 local function exec(cmd) return os.execute(table.concat(cmd,' ')) end
 local function cmdadd(...) table.insert(...) end
+
+--
+-- load optimizations params
+--
+dofile(arg[0]:gsub('bench.lua','bench-params.lua'))
 
 local compilers = {
   'cc65',
@@ -60,7 +65,25 @@ local benches = {
   'radix-sort',
   'shell-sort',
   'heap-sort',
+  'shuffle',
   }
+
+local sort_output =     '0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,'..
+                        '17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,'..
+                        '33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,'..
+                        '49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,'..
+                        '65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,'..
+                        '81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,'..
+                        '97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,'..
+                        '113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,'..
+                        '129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,'..
+                        '145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,'..
+                        '161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,'..
+                        '177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,'..
+                        '193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,'..
+                        '209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,'..
+                        '225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,'..
+                        '241,242,243,244,245,246,247,248,249,250,251,252,253,254,255'
 
 local benches_output = {
   ['dummy'] = nil,
@@ -132,59 +155,29 @@ local benches_output = {
                 '078164062862089986280348253421170679821480865132823066470938446095505'..
                 '82231725359408128481117450',
 
-  ['bubble-sort']     = '0,2,9,11,24,45,57,71,88,100',
-  ['selection-sort']  = '0,2,9,11,24,45,57,71,88,100',
-  ['insertion-sort']  = '0,2,9,11,24,45,57,71,88,100',
-  ['merge-sort']      = '0,2,9,11,24,45,57,71,88,100',
-  ['quick-sort']      = '0,2,9,11,24,45,57,71,88,100',
-  ['counting-sort']   = '0,2,9,11,24,45,57,71,88,100',
-  ['radix-sort']      = '0,2,9,11,24,45,57,71,88,100',
-  ['shell-sort']      = '0,2,9,11,24,45,57,71,88,100',
-  ['heap-sort']       = '0,2,9,11,24,45,57,71,88,100',
+  ['bubble-sort']     = sort_output,
+  ['selection-sort']  = sort_output,
+  ['insertion-sort']  = sort_output,
+  ['merge-sort']      = sort_output,
+  ['quick-sort']      = sort_output,
+  ['counting-sort']   = sort_output,
+  ['radix-sort']      = sort_output,
+  ['shell-sort']      = sort_output,
+  ['heap-sort']       = sort_output,
+
+  ['shuffle']         = '65,24,184,38,214,96,55,231,138,193,186,75,20,94,189,63,242,132,124,74,11,29,226,200,'..
+                        '26,15,170,69,35,211,32,40,129,92,4,22,161,6,27,153,54,213,142,148,140,68,23,91,47,245,'..
+                        '204,13,36,175,18,177,162,117,120,85,100,110,164,9,128,81,143,17,119,206,62,185,58,157,'..
+                        '130,134,107,99,126,180,34,59,49,232,178,45,252,248,168,199,93,125,0,165,70,122,98,196,'..
+                        '28,111,234,95,80,158,156,197,151,112,203,221,240,205,89,90,150,241,166,51,108,249,97,3,'..
+                        '60,73,44,83,144,191,190,163,174,208,56,218,50,247,61,76,237,115,154,173,104,183,37,233,'..
+                        '64,30,210,77,114,194,229,48,152,255,8,243,160,246,136,188,43,228,235,123,86,201,172,141,'..
+                        '225,147,121,57,212,87,71,182,10,217,113,31,16,192,131,236,42,198,159,149,103,219,139,167,'..
+                        '116,5,118,53,88,25,250,1,14,202,78,230,106,169,7,171,19,227,137,216,220,195,79,155,102,'..
+                        '209,187,222,176,251,207,135,238,33,244,67,84,179,52,101,127,21,66,133,109,215,254,181,'..
+                        '72,105,12,253,39,41,46,223,2,145,146,224,82,239',
   }
 
---
--- see share/*/x-cc.sh for more compiler flags
---
-local compilers_make_param = {
-  ['cc65'] = '',
-  ['gcc-6502'] = '',
-  ['kickc'] = '',
-  ['llvm-mos'] = '-D__LLVM_MOS__ -Wno-shift-negative-value',
-  ['osdk-lcc65'] = '',
-  ['sdcc'] = '',
-  ['vbcc'] = '',
-  }
-
-local compilers_make_param_size = {
-  ['cc65']        = '-O',
-  ['gcc-6502']    = '-O2',
-  ['kickc']       = '',
-  ['llvm-mos']    = '-O2',
-  ['osdk-lcc65']  = '-O2',
-  ['sdcc']        = '--opt-code-size',
-  ['vbcc']        = '-O=991',
-  }
-
-local compilers_make_param_speed = {
-  ['cc65']        = '-Oirs',
-  ['gcc-6502']    = '-O3',
-  ['kickc']       = '-Ocoalesce -Oliverangecallpath -Oloophead',
-  ['llvm-mos']    = '-O3',
-  ['osdk-lcc65']  = '-O3',
-  ['sdcc']        = '--opt-code-speed --peep-asm --peep-return',
-  ['vbcc']        = '-O=1023',
-  }
-
-local compilers_make_param_default = {
-  ['cc65']        = '',
-  ['gcc-6502']    = '',
-  ['kickc']       = '',
-  ['llvm-mos']    = '-O',
-  ['osdk-lcc65']  = '',
-  ['sdcc']        = '',
-  ['vbcc']        = '-O=-1',
-  }
 
 --
 local function min(a,b)
@@ -211,9 +204,10 @@ local function compile(c,b,bdir)
   cmdadd(cmd,'COMPILER='..c)
   cmdadd(cmd,'CFLAGS="'..(compilers_make_param[c] or '')..'"')
 
-  if 'size' == opt then cmdadd(cmd,'OPT="'..(compilers_make_param_size[c] or '')..'"')
-  elseif 'speed' == opt then cmdadd(cmd,'OPT="'..(compilers_make_param_speed[c] or '')..'"')
-  else cmdadd(cmd,'OPT="'..(compilers_make_param_default[c] or '')..'"')
+  if 'size' == opt then
+    cmdadd(cmd,'OPT="'..(compilers_make_param_size[c] or '')..'"')
+  else
+    cmdadd(cmd,'OPT="'..(compilers_make_param_speed[c] or '')..'"')
   end
 
   cmdadd(cmd,0<debug_compile and 'SILENT=""' or '')

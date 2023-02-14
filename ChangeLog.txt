@@ -1,0 +1,16 @@
+====================================
+MOS6502 compiler benchmark ChangeLog
+====================================
+
+(2023-02-14)
+------------
+  * 2 sets of data bytes+cycles each depend on optimization flags
+  * Added display of optimization flags used during compilation (size/speed)
+  * Added download link to compilation intermediate files: 'bench-data-YYYY-MM-DD.tar.bz2'
+  * Larger dataset for sort algos - 256 bytes
+  * Added new test example 'shuffle'. It's output is used as input for all sort examples
+  * Added 'Legend' and some explanations of the results.
+
+(2023-02-12)
+------------
+  * Initial release
