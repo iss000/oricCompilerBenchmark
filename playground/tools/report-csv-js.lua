@@ -79,19 +79,36 @@ local js = 'var bench_'..opt..' = {\n'
 local row = '\t%s: { size: [ %s ], speed: [ %s ] },\n'
 local jsend = '};\n'
 
+local function key_pairs(t)
+  local a = {}
+  for n in pairs(t) do
+    table.insert(a, n)
+  end
+  table.sort(a)
+  local i = 0
+  local iter = function ()
+    i = i + 1
+    if a[i] == nil then
+      return nil
+    else
+      return a[i], t[a[i]]
+    end
+  end
+  return iter
+end
 
 local function report_js(opt)
   --
   if date then o('var date_'..opt..' = "%s";\n\n',date) end
   --
   o("var opt_size = {\n")
-  for i,j in pairs(compilers_make_param_size) do
+    for i,j in key_pairs(compilers_make_param_size) do
     o('\t"%s": "%s",\n',i,j)
   end
   o("};\n\n")
   --
   o("var opt_speed = {\n")
-  for i,j in pairs(compilers_make_param_speed) do
+    for i,j in key_pairs(compilers_make_param_speed) do
     o('\t"%s": "%s",\n',i,j)
   end
   o("};\n\n")
