@@ -15,7 +15,7 @@ This is work-in-progress and frequenty updates are possible.
 All feedback, bug reporting and opinions are highly appreciated!
 To discuss use pull-requests, issue tracking or [Defence-force](https://forum.defence-force.org/viewtopic.php?t=2501) forum.
 
-Click to see: [Latest Benchmark Results](https://iss.sandacite.com/iss/compiler-benchmark/bench.html).
+Click to see: [Latest Benchmark Results](https://raxiss.com/compiler-benchmark/bench.html).
 
 ---
 
