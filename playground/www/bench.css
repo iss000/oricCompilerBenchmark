@@ -78,9 +78,25 @@ td {
 /*   min-height: 30px; */
 }
 
-p, a.legend {
+p {
   margin: 2px;
   padding: 4px;
   font-size: 16px;
   line-height: 0.8em;
+}
+
+a:link, a:hover, a:visited, a:href, a:active {
+  cursor: pointer;
+  color: #222;
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: none
+}
+
+a:-webkit-any-link {
+  cursor: pointer;
+  color: #222;
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: none
 }

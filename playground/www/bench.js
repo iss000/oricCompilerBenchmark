@@ -119,11 +119,16 @@ function updateResultsRel(comp) {
   }
 }
 
+function getDateForTitle(date) {
+  date = '<h2><a href="#legend">MOS6502 compiler benchmark</a>'+
+    '&nbsp;<a class="it" style="font-size:22px">('+ date +')'+'</a></h2>';
+  return date;
+}
+
 function updateOpt(mode) {
   resultsOpt = mode;
-
   var date = "size" === resultsOpt? date_size : date_speed;
-  document.getElementById('title').innerHTML = '<h2><a href="#legend">MOS6502</a> compiler benchmark ('+date+')</h2>';
+  document.getElementById('title').innerHTML = getDateForTitle(date);
   document.getElementById('th_00').innerHTML = resultsOptHTML[resultsOpt];
 
   var opt = "size" === resultsOpt? opt_size : opt_speed;
