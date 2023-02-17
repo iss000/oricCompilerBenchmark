@@ -82,13 +82,13 @@ function updateResults(mode) {
     for(var j=1; j<tr.cells.length; j++) {
       var num = dat[j-1];
       var cell = tr.cells[j];
+      dataNumbers.push(num);
       if('type-sizes' === benches[i]) {
         cell.innerHTML = num;
         cell.style['font-size'] = '16px';
         cell.style['line-height'] = '16px';
       } else {
         cell.innerText = num;
-        dataNumbers.push(num);
         if(!(Number(num)===num)) cell.style['color'] = 'darkred';
         else cell.style['color'] = '';
       }
@@ -116,11 +116,13 @@ function updateResultsRel(comp) {
 
       var ref = dataNumbers[i*compilers.length+comp];
       for(var j=1; j<tr.cells.length; j++) {
-        var num = dataNumbers[i*compilers.length+j-1]/ref;
         var cell = tr.cells[j];
-        cell.innerText = num.toFixed(comp===j-1? 0:2);
-        if(!((Number(num)===num)&&(Number(ref)===ref))) cell.style['color'] = '#ebebeb';
-        else cell.style['color'] = (num<1)?'darkgreen':(num==1)? '':'darkred';
+        if('type-sizes' !== benches[i]) {
+          var num = dataNumbers[i*compilers.length+j-1]/ref;
+          cell.innerText = num.toFixed(comp===j-1? 0:2);
+          if(!((Number(num)===num)&&(Number(ref)===ref))) cell.style['color'] = '#ebebeb';
+          else cell.style['color'] = (num<1)?'darkgreen':(num==1)? '':'darkred';
+        }
       }
     }
   }
