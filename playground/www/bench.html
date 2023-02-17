@@ -1,8 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
 <head>
-<meta charset="UTF-8">
 <title>MOS6502 compiler benchmark &copy; [iss@raxiss]</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta charset="UTF-8">
+
 <link type="text/css" rel="stylesheet" href="bench.css" media="all" />
 
 <script>
@@ -36,19 +40,23 @@ newLink.type = 'image/x-icon';
 newLink.href = 'data:image/png;base64,'+favIcon;
 docHead.appendChild(newLink);
 })();</script>
+
 <script src="bench-size.js"></script>
 <script src="bench-speed.js"></script>
 <script src="bench.js"></script>
 </head>
 
 <body>
-<h2 id="title">MOS6502 compiler benchmark</h2>
-<br>
+
+<div id="div-title"  onmousedown="return false" onselectstart="return false">
+<p id="title" class="title">MOS6502 compiler benchmark&nbsp;&nbsp;&nbsp;<a class="it">(@)</a></p>
+</div>
+
 <div id="div-table">
 <table onmousedown="return false" onselectstart="return false">
   <thead>
     <tr align="center">
-      <th style="min-width:200px;" onclick='toggleOpt();'><div id="th_00"></div></th>
+      <th style="min-width:180px;" onclick='toggleOpt();'><div id="th_00"></div></th>
       <th onclick="updateResultsRel(0)">cc65</th>
       <th onclick="updateResultsRel(1)">gcc-6502</th>
       <th onclick="updateResultsRel(2)">kickc</th>
@@ -60,7 +68,7 @@ docHead.appendChild(newLink);
   </thead>
 <tbody>
   <tr class="it" align="center">
-    <th style="min-width:200px;" onclick='toggleResults();'><div id="th_10"></div></th>
+    <th style="min-width:180px;" onclick='toggleResults();'><div id="th_10"></div></th>
     <td id="op_0"></td>
     <td id="op_1"></td>
     <td id="op_2"></td>
@@ -69,85 +77,46 @@ docHead.appendChild(newLink);
     <td id="op_5"></td>
     <td id="op_6"></td>
   </tr>
-  <tr align="right" id="tr_00">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_01">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_02">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_03">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_04">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_05">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_06">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_07">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_08">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_09">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_10">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_11">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_12">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_13">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_14">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_15">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-</tr>
-<tr align="right" id="tr_16">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_17">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_18">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_19">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-  <tr align="right" id="tr_20">
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
+  <tr align="right" id="tr_00"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_01"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_02"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_03"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_04"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_05"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_06"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_07"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_08"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_09"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_10"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_11"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_12"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_13"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_14"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_15"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_16"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_17"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_18"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_19"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr align="right" id="tr_20"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 </tbody>
 </table>
 </div>
 <hr>
-<h5>
-<p><a name="legend">Legend:</a></p>
-<p><a style="color:darkred;font-weight:bold;">C</a> - Compilation failed.</p>
-<p><a style="color:darkred;font-weight:bold;">T</a> - Time-out error - test runs longer than the preset time limit 300000000 cycles (5 min. for 1 MHz cpu).</p>
-<p><a style="color:darkred;font-weight:bold;">R</a> - Run-time error - the output doesn't match the expected one.</p>
+
+<div id="div-legend">
+<p class="lg">Legend:</p>
+<p class="lg"><a class="lgred">C</a> - Compilation failed.</p>
+<p class="lg"><a class="lgred">T</a> - Time-out error - test runs longer than the preset time limit 300000000 cycles (5 min. for 1 MHz cpu).</p>
+<p class="lg"><a class="lgred">R</a> - Run-time error - the output doesn't match the expected one.</p>
 <hr>
-<p><a >Click on header cells to change visualization.</a></p>
-<p><a >Size numbers are length of the compiled binary in bytes. The lower is better.</a></p>
-<p><a >Speed numbers are cpu cycles counted for execution. The lower is better.</a></p>
+<p class="lg"><a >Click on header cells to change visualization.</a></p>
+<p class="lg"><a >Size numbers are length of the compiled binary in bytes. The lower is better.</a></p>
+<p class="lg"><a >Speed numbers are cpu cycles counted for execution. The lower is better.</a></p>
 <hr>
-<p id="archive">Compilation intermediate files: <a href="bench-data-@.tar.bz2">bench-data-@.tar.bz2</a></p>
-</h5>
+<p class="lg">MOS6502 compiler benchmark <a href="https://github.com/iss000/oricCompilerBenchmark" target="_blank">sources</a> at github.</p>
+<p class="lg" id="archive">Compilation intermediate files: <a href="bench-data-@.tar.bz2">bench-data-@.tar.bz2</a></p>
+</div>
+
 </body>
 <script>setupPage();</script>
 <hr>

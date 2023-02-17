@@ -85,8 +85,8 @@ function updateResults(mode) {
       dataNumbers.push(num);
       if('type-sizes' === benches[i]) {
         cell.innerHTML = num;
-        cell.style['font-size'] = '16px';
-        cell.style['line-height'] = '16px';
+        cell.style['font-size'] = '14px';
+        cell.style['line-height'] = '14px';
       } else {
         cell.innerText = num;
         if(!(Number(num)===num)) cell.style['color'] = 'darkred';
@@ -128,16 +128,11 @@ function updateResultsRel(comp) {
   }
 }
 
-function getDateForTitle(date) {
-  date = '<h2><a href="#legend">MOS6502 compiler benchmark</a>'+
-    '&nbsp;<a class="it" style="font-size:22px">('+ date +')'+'</a></h2>';
-  return date;
-}
-
 function updateOpt(mode) {
   resultsOpt = mode;
   var date = "size" === resultsOpt? date_size : date_speed;
-  document.getElementById('title').innerHTML = getDateForTitle(date);
+  var title = document.getElementById('title');
+  title.innerHTML = title.innerHTML.replaceAll(/@/g,date)
   document.getElementById('th_00').innerHTML = resultsOptHTML[resultsOpt];
 
   var opt = "size" === resultsOpt? opt_size : opt_speed;
