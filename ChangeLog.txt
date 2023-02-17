@@ -5,6 +5,11 @@ MOS6502 compiler benchmark ChangeLog
 Online results at: https://raxiss.com/compiler-benchmark/bench.html
 
 
+(2023-02-17)
+------------
+  * Added sample 0xcafe to test binary litterals (i.e. 0b00000000).
+  * Show the size of basic types
+  * Samples reordered
 
 (2023-02-15)
 ------------
