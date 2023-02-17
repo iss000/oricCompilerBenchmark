@@ -66,9 +66,14 @@ local function report_load(frep)
       table.insert(benches,bench)
       benches[bench] = bench
     end
-    data[compiler..'+'..bench..'+size'] = tonumber(size)
-    data[compiler..'+'..bench..'+speed'] = tonumber(clocks)
-    data[compiler..'+'..bench..'+status'] = status
+    if 'type-sizes' == bench then
+      data[compiler..'+'..bench..'+info'] =
+        string.format('char:%s<br>short:%s<br>int:%s<br>long:%s',l[3],l[4],l[5],l[6])
+    else
+      data[compiler..'+'..bench..'+size'] = tonumber(size)
+      data[compiler..'+'..bench..'+speed'] = tonumber(clocks)
+      data[compiler..'+'..bench..'+status'] = status
+    end
   end
   frep:close()
 end
@@ -115,39 +120,48 @@ local function report_js(opt)
   --
   o(js)
   for b = 1,#benches do
-    -- size
     local sizes =''
-    for c = 1,#compilers do
-      local val = data[compilers[c]..'+'..benches[b]..'+size']
-      local status = tonumber(data[compilers[c]..'+'..benches[b]..'+status'])
-      if 0 == status then
-        -- OK, no error
-      elseif 1 == status then
-        val = '"C"' -- Compile error
-      elseif 2 == status then
-        val = '"T"' -- Time-out error
-      elseif 3 == status then
-        val = '"R"' -- Run-time error
-      end
-      sizes = sizes..val..','
-    end
-    -- speed
     local speeds =''
-    for c = 1,#compilers do
-      local val = data[compilers[c]..'+'..benches[b]..'+speed']
-      local status = tonumber(data[compilers[c]..'+'..benches[b]..'+status'])
-      if 0 == status then
-        -- OK, no error
-      elseif 1 == status then
-        val = '"C"' -- Compile error
-      elseif 2 == status then
-        val = '"T"' -- Time-out error
-      elseif 3 == status then
-        val = '"R"' -- Run-time error
+    if 'type-sizes' == benches[b] then
+      for c = 1,#compilers do
+        sizes = sizes..'"'..data[compilers[c]..'+'..benches[b]..'+info']..'"'..','
       end
-      speeds = speeds..val..','
+      speeds = sizes
+      o(row,'"'..benches[b]..'"',sizes,speeds)
+
+    else
+      -- size
+      for c = 1,#compilers do
+        local val = data[compilers[c]..'+'..benches[b]..'+size']
+        local status = tonumber(data[compilers[c]..'+'..benches[b]..'+status'])
+        if 0 == status then
+          -- OK, no error
+        elseif 1 == status then
+          val = '"C"' -- Compile error
+        elseif 2 == status then
+          val = '"T"' -- Time-out error
+        elseif 3 == status then
+          val = '"R"' -- Run-time error
+        end
+        sizes = sizes..val..','
+      end
+      -- speed
+      for c = 1,#compilers do
+        local val = data[compilers[c]..'+'..benches[b]..'+speed']
+        local status = tonumber(data[compilers[c]..'+'..benches[b]..'+status'])
+        if 0 == status then
+          -- OK, no error
+        elseif 1 == status then
+          val = '"C"' -- Compile error
+        elseif 2 == status then
+          val = '"T"' -- Time-out error
+        elseif 3 == status then
+          val = '"R"' -- Run-time error
+        end
+        speeds = speeds..val..','
+      end
+      o(row,'"'..benches[b]..'"',sizes,speeds)
     end
-    o(row,benches[b]:gsub('-','_'),sizes,speeds)
   end
   o(jsend)
 end

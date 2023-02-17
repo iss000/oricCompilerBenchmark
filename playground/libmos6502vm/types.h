@@ -51,9 +51,16 @@ typedef unsigned long uint32_t;
 #endif
 
 // ---------------------------------------------------------------------
+#ifndef __HOST_C__
 #define MEMPTR(address)       ((uint8_t*)(address))
 #define peek(address)         (MEMPTR(address)[0])
 #define poke(address,value)   (MEMPTR(address)[0]=((uint8_t)(value)))
+#else
+#define MEMPTR(address)       ((uint8_t*)(&MOS6502vm_mem[(address)]))
+#define peek(address)         (MOS6502vm_mem[address])
+#define poke(address,value)   (MOS6502vm_mem[address]=((uint8_t)(value)))
+static uint8_t MOS6502vm_mem[0x10000];
+#endif
 
 // ---------------------------------------------------------------------
 #endif /* __TYPES_H__ */

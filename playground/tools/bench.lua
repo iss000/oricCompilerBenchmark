@@ -46,16 +46,18 @@ local compilers = {
   }
 
 local benches = {
+  'type-sizes',
   'dummy',
   'hello-world',
-  'type-sizes',
+  'bytecpy',
   'memcopy',
+  '0xcafe',
   'sieve',
   'aes256',
   'mandelbrot',
-  'bytecpy',
   'frogmove',
   'pi',
+  'shuffle',
   'bubble-sort',
   'selection-sort',
   'insertion-sort',
@@ -65,7 +67,6 @@ local benches = {
   'radix-sort',
   'shell-sort',
   'heap-sort',
-  'shuffle',
   }
 
 local sort_output =     '0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,'..
@@ -92,10 +93,6 @@ local benches_output = {
                 'HELLO 6502 WORLD!',
 
   ['type-sizes'] = nil,
-                -- "SIZE OF CHAR  :1"..
-                -- "SIZE OF SHORT :2"..
-                -- "SIZE OF INT   :2"..
-                -- "SIZE OF LONG  :4",
 
   ['memcopy'] = nil,
 
@@ -148,7 +145,7 @@ local benches_output = {
 
   ['bytecpy'] = nil,
 
-  ['frogmove'] = 'Moved!',
+  ['frogmove'] = 'FROG MOVED MOVED',
 
   ['pi'] =      -- https://www.piday.org/million/
                 'pi=3.1415926535897932384626433832795028841971693993751058209749445923'..
@@ -176,6 +173,8 @@ local benches_output = {
                         '116,5,118,53,88,25,250,1,14,202,78,230,106,169,7,171,19,227,137,216,220,195,79,155,102,'..
                         '209,187,222,176,251,207,135,238,33,244,67,84,179,52,101,127,21,66,133,109,215,254,181,'..
                         '72,105,12,253,39,41,46,223,2,145,146,224,82,239',
+
+  ['0xcafe']          = '0XCAFE == 0XCAFE :)'
   }
 
 
@@ -274,6 +273,16 @@ local function run(c,b,bdir,fres)
       end
     else
       stat = '0'
+      if b == 'type-sizes' then
+        r = '"'..c..'","'..b..'",'
+        t = t:gsub('\r',''):gsub('\n','')
+        t = t:gsub('[^%d% ]*','')
+        t = t:gsub('%s*',',')
+        t = t:sub(2,#t-1)
+        r = '"'..c..'","'..b..'",'..t:sub(1,#t-2)
+        stat = t:sub(#t-1)
+        -- print(r)
+      end
     end
   else
     stat = '2'

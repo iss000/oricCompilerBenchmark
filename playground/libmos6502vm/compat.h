@@ -2,7 +2,7 @@
  **  ___ ___ _ _|_|___ ___
  ** |  _| .'|_'_| |_ -|_ -|
  ** |_| |__,|_,_|_|___|___|
- **         raxiss (c) 2021
+ **         raxiss (c) 2023
  */
 
 /* ================================================================== *
@@ -13,30 +13,21 @@
 // ---------------------------------------------------------------------
 
 // =====================================================================
-#ifndef __CONIO_H__
-#define __CONIO_H__
+#ifndef __COMPART_H__
+#define __COMPART_H__
 // ---------------------------------------------------------------------
-#include "types.h"
 
 // =====================================================================
-// mos6502vm virtual standard io
-// ---------------------------------------------------------------------
-// NOTE: keep it in synch with the mos6502vm code
-#define CPORT ((uint16_t)0xffff)
-
-// NOTE: workaround for kickc
-#define LF    '\x0a'
-#define CR    '\x0d'
-
-// ---------------------------------------------------------------------
-// output single char to CPORT
-#ifndef __HOST_C__
-void _putc(const char c);
+#ifdef __KICKC__
+#include <division.h>
+#define _modr16u(dividend,divisor,rem)\
+  modr16u((unsigned int)dividend,(unsigned int)divisor,(unsigned int)rem)
+#define _div16u(dividend,divisor)\
+  div16u((unsigned int)dividend,(unsigned int)divisor)
+#else
+#define _modr16u(dividend,divisor,rem)(dividend%divisor)
+#define _div16u(dividend,divisor)(dividend/divisor)
 #endif
 
 // ---------------------------------------------------------------------
-// output string to CPORT
-void _puts(const char* s);
-
-// ---------------------------------------------------------------------
-#endif /* __CONIO_H__ */
+#endif /* __COMPART_H__ */

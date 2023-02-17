@@ -15,9 +15,7 @@ AFLAGS="-cpu=mos6502x"
 # AFLAGS="${AFLAGS} -calling=__phicall"
 AFLAGS="${AFLAGS} ${VERBOSE} "
 
-CFLAGS="${CFLAGS} -D__KICKC__"
 CFLAGS="${CFLAGS} -var_model=ssa_zp"
-
 CFLAGS="${CFLAGS} ${OPT}"
 
 LFLAGS="-a "

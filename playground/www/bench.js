@@ -9,26 +9,27 @@ var compilers = [
 ];
 
 var benches = [
+  'type-sizes',
   'dummy',
-  'hello_world',
-  'type_sizes',
+  'hello-world',
+  'bytecpy',
   'memcopy',
+  '0xcafe',
   'sieve',
   'aes256',
   'mandelbrot',
-  'bytecpy',
   'frogmove',
   'pi',
-  'bubble_sort',
-  'selection_sort',
-  'insertion_sort',
-  'merge_sort',
-  'quick_sort',
-  'counting_sort',
-  'radix_sort',
-  'shell_sort',
-  'heap_sort',
   'shuffle',
+  'bubble-sort',
+  'selection-sort',
+  'insertion-sort',
+  'merge-sort',
+  'quick-sort',
+  'counting-sort',
+  'radix-sort',
+  'shell-sort',
+  'heap-sort',
 ];
 
 var resultsOpt = 'size';
@@ -76,15 +77,21 @@ function updateResults(mode) {
     idx = 'tr_'+idx.substr(idx.length-2)
     var tr = document.getElementById(idx);
     var dat = data[benches[i]][resultsMode];
-    tr.cells[0].innerText = benches[i].replaceAll(/_/g,'-');
+    tr.cells[0].innerText = benches[i];
 
     for(var j=1; j<tr.cells.length; j++) {
       var num = dat[j-1];
       var cell = tr.cells[j];
-      cell.innerText = num;
-      dataNumbers.push(num);
-      if(!(Number(num)===num)) cell.style['color'] = 'darkred';
-      else cell.style['color'] = '';
+      if('type-sizes' === benches[i]) {
+        cell.innerHTML = num;
+        cell.style['font-size'] = '16px';
+        cell.style['line-height'] = '16px';
+      } else {
+        cell.innerText = num;
+        dataNumbers.push(num);
+        if(!(Number(num)===num)) cell.style['color'] = 'darkred';
+        else cell.style['color'] = '';
+      }
     }
   }
 }
