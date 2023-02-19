@@ -30,6 +30,7 @@ var benches = [
   'radix-sort',
   'shell-sort',
   'heap-sort',
+  'eight-queens',
 ];
 
 var resultsOpt = 'size';

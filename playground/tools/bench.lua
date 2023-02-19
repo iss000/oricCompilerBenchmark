@@ -15,8 +15,8 @@ local csvfile = 'www/bench-'..opt..'.csv'
 
 local verbose = false         -- verbose compile and run
 
-local debug_compile = 1       -- verbose compilation level (0,1,2,3)
-local debug_run_info = 1      -- mos6502vm shows some info (0,1)
+local debug_compile = 0       -- verbose compilation level (0,1,2,3)
+local debug_run_info = 0      -- mos6502vm shows some info (0,1)
 local debug_run_dump = 0      -- dumps mos6502vm memory to file (0,1)
 local debug_run_trace = 0     -- 6502 step-by-step disassembler (0,1,2)
 
@@ -67,6 +67,7 @@ local benches = {
   'radix-sort',
   'shell-sort',
   'heap-sort',
+  'eight-queens',
   }
 
 local sort_output =     '0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,'..
@@ -174,7 +175,18 @@ local benches_output = {
                         '209,187,222,176,251,207,135,238,33,244,67,84,179,52,101,127,21,66,133,109,215,254,181,'..
                         '72,105,12,253,39,41,46,223,2,145,146,224,82,239',
 
-  ['0xcafe']          = '0XCAFE == 0XCAFE :)'
+  ['0xcafe']          = '0XCAFE == 0XCAFE :)',
+
+  ['eight-queens']    = 'SOLUTIONS: 92'..
+                        ' 12345678'..
+                        '1-------Q'..
+                        '2---Q----'..
+                        '3Q-------'..
+                        '4--Q-----'..
+                        '5-----Q--'..
+                        '6-Q------'..
+                        '7------Q-'..
+                        '8----Q---',
   }
 
 
@@ -231,6 +243,10 @@ local function run(c,b,bdir,fres)
   cmdadd(cmd,'-a '..sastringhex)
   cmdadd(cmd,'-s '..scondstorun)
   cmdadd(cmd,sastringhex..':bin/'..c..'-'..b..'.bin')
+  -- redirect trace output from stderr to file
+  cmdadd(cmd,0<debug_run_trace and '2>bin/'..c..'-'..b..'-trace.txt' or '')
+
+
   msg(table.concat(cmd,'\n'))
 
   local r = '"'..c..'","'..b..'",'

@@ -186,14 +186,14 @@ static void mos6502_trace_1(void)
   {
     sprintf(buffer, opmodesdasm[opmodes[OP(cpu.pc)]], opnames[OP(cpu.pc)], OP16(cpu.pc));
     if (0x20 == OP(cpu.pc))
-      printf("%.4X: %.2X %.2X %.2X   %s\n",
+      fprintf(stderr,"%.4X: %.2X %.2X %.2X   %s\n",
              cpu.pc,
              OP(cpu.pc),
              OP(cpu.pc + 1),
              OP(cpu.pc + 2),
              buffer);
     else
-      printf("%.4X: %.2X %.2X %.2X   %s\n",
+      fprintf(stderr,"%.4X: %.2X %.2X %.2X   %s\n",
              cpu.pc,
              OP(cpu.pc),
              OP(cpu.pc + 1),
@@ -207,7 +207,7 @@ static void mos6502_trace_1(void)
       sprintf(buffer, opmodesdasm[opmodes[OP(cpu.pc)]], opnames[OP(cpu.pc)], cpu.pc + OPSIZE(cpu.pc) + (int8_t)OP8(cpu.pc));
     else
       sprintf(buffer, opmodesdasm[opmodes[OP(cpu.pc)]], opnames[OP(cpu.pc)], OP8(cpu.pc));
-    printf("%.4X: %.2X %.2X      %s\n",
+    fprintf(stderr,"%.4X: %.2X %.2X      %s\n",
            cpu.pc,
            OP(cpu.pc),
            OP(cpu.pc + 1),
@@ -217,7 +217,7 @@ static void mos6502_trace_1(void)
   case 1:
   {
     sprintf(buffer, opmodesdasm[opmodes[OP(cpu.pc)]], opnames[OP(cpu.pc)]);
-    printf("%.4X: %.2X         %s\n",
+    fprintf(stderr,"%.4X: %.2X         %s\n",
            cpu.pc,
            OP(cpu.pc),
            buffer);
@@ -260,7 +260,7 @@ static void mos6502_trace_2(void)
   {
     sprintf(buffer + strlen(buffer), opmodesdasm[opmodes[OP(cpu.pc)]], opnames[OP(cpu.pc)], OP16(cpu.pc));
     if (0x20 == OP(cpu.pc))
-      printf("%2X | %.4X: %.2X %.2X %.2X %s\n",
+      fprintf(stderr,"%2X | %.4X: %.2X %.2X %.2X %s\n",
              cpu.status & FLAG_INTERRUPT ? 1 : 0,
              cpu.pc,
              OP(cpu.pc),
@@ -268,7 +268,7 @@ static void mos6502_trace_2(void)
              OP(cpu.pc + 2),
              buffer);
     else
-      printf("%2X | %.4X: %.2X %.2X %.2X %s\n",
+      fprintf(stderr,"%2X | %.4X: %.2X %.2X %.2X %s\n",
              cpu.status & FLAG_INTERRUPT ? 1 : 0,
              cpu.pc,
              OP(cpu.pc),
@@ -283,7 +283,7 @@ static void mos6502_trace_2(void)
       sprintf(buffer + strlen(buffer), opmodesdasm[opmodes[OP(cpu.pc)]], opnames[OP(cpu.pc)], cpu.pc + OPSIZE(cpu.pc) + (int8_t)OP8(cpu.pc));
     else
       sprintf(buffer + strlen(buffer), opmodesdasm[opmodes[OP(cpu.pc)]], opnames[OP(cpu.pc)], OP8(cpu.pc));
-    printf("%2X | %.4X: %.2X %.2X    %s\n",
+    fprintf(stderr,"%2X | %.4X: %.2X %.2X    %s\n",
            cpu.status & FLAG_INTERRUPT ? 1 : 0,
            cpu.pc,
            OP(cpu.pc),
@@ -294,7 +294,7 @@ static void mos6502_trace_2(void)
   case 1:
   {
     sprintf(buffer + strlen(buffer), opmodesdasm[opmodes[OP(cpu.pc)]], opnames[OP(cpu.pc)]);
-    printf("%2X | %.4X: %.2X       %s\n",
+    fprintf(stderr,"%2X | %.4X: %.2X       %s\n",
            cpu.status & FLAG_INTERRUPT ? 1 : 0,
            cpu.pc,
            OP(cpu.pc),

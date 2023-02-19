@@ -186,7 +186,7 @@ void usage(const char *argv0)
   fprintf(stdout, " \t -s S      %s\n", "limit run to S seconds   [default 60]");
   fprintf(stdout, " \t -d file   %s\n", "dump memory to file");
   fprintf(stdout, " \t -q        %s\n", "be quiet (disble client's `putchar`)");
-  fprintf(stdout, " \t -v[v[v]]  %s\n", "increase verbosity level [default 0 (off)]");
+  fprintf(stdout, " \t -v[v]     %s\n", "run-time disassembly to stderr off/brief/detailed");
   fprintf(stdout, " \t -h        %s\n", "this help");
   fprintf(stdout, " \n");
 }

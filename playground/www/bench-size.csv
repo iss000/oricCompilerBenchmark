@@ -145,3 +145,10 @@
 "osdk-lcc65","heap-sort",2744,1661441,5339768,0
 "sdcc","heap-sort",2902,99752,331838,3
 "vbcc","heap-sort",1890,722750,2336973,0
+"cc65","eight-queens",1084,8042882,28729340,0
+"gcc-6502","eight-queens",1067,1589670,4725549,0
+"kickc","eight-queens",593,1741322,5565918,0
+"llvm-mos","eight-queens",5190,1069958,3047642,0
+"osdk-lcc65","eight-queens",2649,23357198,72651727,0
+"sdcc","eight-queens",1173,4450966,14030163,0
+"vbcc","eight-queens",917,3140050,9766336,0

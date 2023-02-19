@@ -24,7 +24,7 @@ Fast and handy MOS6502 emulator.
          -s S      limit run to S seconds   [default 60]
          -d file   dump 64k memory to file
          -q        be quiet (disble client's `putchar`)
-         -v[v[v]]  increase verbosity level [default 0 (off)]
+         -v[v]     run-time disassembly to stderr off/brief/detailed
          -h        this help
 ```
 
