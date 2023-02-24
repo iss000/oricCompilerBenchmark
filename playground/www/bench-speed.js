@@ -1,5 +1,3 @@
-var date_speed = "2023-02-19";
-
 var opt_size = {
 	"cc65": "-O",
 	"gcc-6502": "-O2",

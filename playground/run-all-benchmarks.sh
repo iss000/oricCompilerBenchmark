@@ -20,4 +20,4 @@ do
   ./tools/report-csv-js.lua $i www/bench-$i.csv www/bench-$i.js $DATE || exit 1
 done
 #
-tar -cjf www/bench-data-$DATE.tar.bz2 bin-{size,speed}/ obj-{size,speed}/ www/bench-{size,speed}.js
+tar -cjf www/bench-data-$DATE.tar.bz2 bin-{size,speed}/ obj-{size,speed}/ www/bench-{size,speed}.{js,csv} www/date-{size,speed}.js

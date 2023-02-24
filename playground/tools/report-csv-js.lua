@@ -104,8 +104,6 @@ end
 
 local function report_js(opt)
   --
-  if date then o('var date_'..opt..' = "%s";\n\n',date) end
-  --
   o("var opt_size = {\n")
     for i,j in key_pairs(compilers_make_param_size) do
     o('\t"%s": "%s",\n',i,j)
@@ -169,6 +167,16 @@ end
 local function report(frep)
   --
   report_load(frep)
+  --
+  if date then
+    fo = assert(io.open(jsfile:gsub('bench','date'),'w'))
+    o('var date_'..opt..' = "%s";\n',date)
+    fo:close()
+  end
+  --
+  fo = assert(io.open(jsfile,'w'))
+  report_js(opt)
+  fo:close()
   --
   fo = assert(io.open(jsfile,'w'))
   report_js(opt)
