@@ -31,11 +31,12 @@ LDCOPTS="${LDCOPTS} -mllvm -phi-node-folding-threshold=0"
 LDCOPTS="${LDCOPTS} -mllvm -two-entry-phi-node-folding-threshold=0"
 LDCOPTS="${LDCOPTS} -mllvm -align-large-globals=false"
 LDCOPTS="${LDCOPTS} -mllvm -disable-spill-hoist"
-LDCOPTS="${LDCOPTS} "
-LDCOPTS="${LDCOPTS} "
+LDCOPTS="${LDCOPTS} --oformat=binary"
+LDCOPTS="${LDCOPTS} --strip-debug"
 LDCOPTS="${LDCOPTS} "
 LDCOPTS="${LDCOPTS} "
 
+echo ">>> ${BASE}/bin/ld.lld ${LDCOPTS} -o ${ofile} $* ${LDFLAGS} ${LIBS}"
 ${BASE}/bin/ld.lld ${LDCOPTS} -o ${ofile} $* ${LDFLAGS} ${LIBS}
 
 # # # https://www.skenz.it/compilers/llvm
