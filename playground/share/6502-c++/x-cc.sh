@@ -25,9 +25,11 @@ AVRCXXFLAGS="${AVRCXXFLAGS} -fconstexpr-ops-limit=333554432"
 XAFLAGS="-DXA -D__XA__ -C -W -M -R -p~ -cc -O ASCII"
 
 ${AVRCC} ${AVRCFLAGS} ${INCLUDES} -c -S -o ${ofile/.o/.avr.s} ${ifile} \
-&& ${BINDIR}/6502-c++ -i ${ofile/.o/.avr.s} -o ${ofile/.o/.6502.s} -v6 \
-&& ${BINDIR}/xa65 ${XAFLAGS} -o ${ofile/.o/.oxa} ${ofile/.o/.6502.s} \
-&& ${BINDIR}/cc65/bin/co65 -g -o ${ofile/.o/.oxa.s} ${ofile/.o/.oxa} \
-&& ${BINDIR}/cc65/bin/ca65 -U -l ${ofile/.o/.lst} -o ${ofile} ${ofile/.o/.oxa.s}
+&& ${BINDIR}/6502-c++ -i ${ofile/.o/.avr.s} -o ${ofile/.o/.6502.s} -v4 \
+&& ${BINDIR}/cc65/bin/ca65 -U -o ${ofile} ${ofile/.o/.6502.s}
+
+# && ${BINDIR}/xa65 ${XAFLAGS} -o ${ofile/.o/.oxa} ${ofile/.o/.6502.s} \
+# && ${BINDIR}/cc65/bin/co65 -g -o ${ofile/.o/.oxa.s} ${ofile/.o/.oxa} \
+# && ${BINDIR}/cc65/bin/ca65 -U -o ${ofile} ${ofile/.o/.oxa.s}
 
 # && $(dirname $0)/x-ca.sh ${ofile} ${ofile/.o/.oxa.s}

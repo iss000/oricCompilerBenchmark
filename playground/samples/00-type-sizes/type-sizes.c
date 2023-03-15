@@ -9,14 +9,14 @@ static unsigned int sizeof_long;
 static char valbuf[10];
 static void putint(unsigned int val)
 {
-  char k = 0;
+  unsigned char k = 0;
   if(0 == val)
     _putc('0');
   else
   {
     while(0 != val)
     {
-      valbuf[k] = '0' + _modr16u(val, 10, 0);
+      valbuf[k] = '0' + (char)_modr16u(val, 10, 0);
       val = _div16u(val, 10);
       k++;
     }

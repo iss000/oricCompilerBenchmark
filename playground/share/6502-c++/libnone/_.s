@@ -2,15 +2,44 @@
 ;)  ___ ___ _ _|_|___ ___
 ;) |  _| .'|_'_| |_ -|_ -|
 ;) |_| |__,|_,_|_|___|___|
-;)         raxiss (c) 2021
+;)         raxiss (c) 2023
 
 ; ======================================================================
 ; Imports
 ; ----------------------------------------------------------------------
 
-; .importzp _sp0, _sp1, _fp0, _fp1
-; .importzp _r0, _r1, _r2, _r3, _r4, _r5, _r6, _r7
-; .importzp _s0, _s1, _s2, _s3, _s4, _s5, _s6, _s7
-; .importzp _e0, _e1, _e2, _e3, _e4, _e5, _e6, _e7
-; .importzp _e8, _e9, _e10, _e11, _e12, _e13, _e14, _e15
-; .importzp _tmp0, _tmp1
+.importzp       zpreg_00
+.importzp       zpreg_01
+.importzp       zpreg_02
+.importzp       zpreg_03
+.importzp       zpreg_04
+.importzp       zpreg_05
+.importzp       zpreg_06
+.importzp       zpreg_07
+.importzp       zpreg_08
+.importzp       zpreg_09
+.importzp       zpreg_0a
+.importzp       zpreg_0b
+.importzp       zpreg_0c
+.importzp       zpreg_0d
+.importzp       zpreg_0e
+.importzp       zpreg_0f
+.importzp       zpreg_10
+.importzp       zpreg_11
+.importzp       zpreg_12
+.importzp       zpreg_13
+.importzp       zpreg_14
+.importzp       zpreg_15
+.importzp       zpreg_16
+.importzp       zpreg_17
+.importzp       zpreg_18
+.importzp       zpreg_19
+.importzp       zpreg_1a
+.importzp       zpreg_1b
+.importzp       zpreg_1c
+.importzp       zpreg_1d
+.importzp       zpreg_1e
+.importzp       zpreg_1f
+
+.importzp       sp
+.importzp       sreg
