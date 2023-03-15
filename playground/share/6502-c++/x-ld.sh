@@ -9,7 +9,7 @@ LFLAGS=""
 # LFLAGS="${LFLAGS} -nodefaultlibs"
 # LFLAGS="${LFLAGS} -nostartfiles"
 
-$(dirname ${BASE})/cc65/bin/ld65 -D_start=${START} -C share/x86-to-6502/none.cfg \
+$(dirname ${BASE})/cc65/bin/ld65 -D_start=${START} -C share/6502-c++/none.cfg \
 ${LFLAGS} -vm -m ${ofile/.prg/.map} -o ${ofile} $* ${LDFLAGS} ${LIBS}
 
 LUA_MAP_TO_SYM=$(cat << 'EOF'

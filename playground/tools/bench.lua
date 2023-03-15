@@ -43,7 +43,7 @@ local compilers = {
   'osdk-lcc65',
   'sdcc',
   'vbcc',
-  '6502-cpp',
+  '6502-c++',
   }
 
 local benches = {
