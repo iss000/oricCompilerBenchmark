@@ -4,15 +4,14 @@
 -- |_| |__,|_,_|_|___|___|
 --  iss@raxiss(c)2020,2023
 
+verbose = false         -- verbose compile and run
 
-local verbose = false         -- verbose compile and run
+debug_compile = 0       -- verbose compilation level (0,1,2,3)
+debug_run_info = 0      -- mos6502vm shows some info (0,1)
+debug_run_dump = 0      -- dumps mos6502vm memory to file (0,1)
+debug_run_trace = 0     -- 6502 step-by-step disassembler (0,1,2)
 
-local debug_compile = 0       -- verbose compilation level (0,1,2,3)
-local debug_run_info = 0      -- mos6502vm shows some info (0,1)
-local debug_run_dump = 0      -- dumps mos6502vm memory to file (0,1)
-local debug_run_trace = 0     -- 6502 step-by-step disassembler (0,1,2)
-
-local compilers = {
+compilers = {
   'cc65',
   'gcc-6502',
   'kickc',
