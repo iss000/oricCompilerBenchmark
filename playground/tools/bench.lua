@@ -13,13 +13,6 @@
 local opt = assert(arg[1])
 local csvfile = 'www/bench-'..opt..'.csv'
 
-local verbose = false         -- verbose compile and run
-
-local debug_compile = 3       -- verbose compilation level (0,1,2,3)
-local debug_run_info = 1      -- mos6502vm shows some info (0,1)
-local debug_run_dump = 0      -- dumps mos6502vm memory to file (0,1)
-local debug_run_trace = 0     -- 6502 step-by-step disassembler (0,1,2)
-
 local scondstorun = 60*5
 local sastringhex = '0800'
 local sanumber = tonumber('0x'..sastringhex)
@@ -31,20 +24,9 @@ local function exec(cmd) return os.execute(table.concat(cmd,' ')) end
 local function cmdadd(...) table.insert(...) end
 
 --
--- load optimizations params
+-- load setable params
 --
 dofile(arg[0]:gsub('bench.lua','bench-params.lua'))
-
-local compilers = {
-  'cc65',
-  'gcc-6502',
-  'kickc',
-  'llvm-mos',
-  'osdk-lcc65',
-  'sdcc',
-  'vbcc',
-  '6502-c++',
-  }
 
 local benches = {
   'type-sizes',

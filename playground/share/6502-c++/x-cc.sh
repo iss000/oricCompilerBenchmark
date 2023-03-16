@@ -25,7 +25,7 @@ AVRCXXFLAGS="${AVRCXXFLAGS} -fconstexpr-ops-limit=333554432"
 XAFLAGS="-DXA -D__XA__ -C -W -M -R -p~ -cc -O ASCII"
 
 ${AVRCC} ${AVRCFLAGS} ${INCLUDES} -c -S -o ${ofile/.o/.avr.s} ${ifile} \
-&& ${BINDIR}/6502-c++ -i ${ofile/.o/.avr.s} -o ${ofile/.o/.6502.s} -v4 \
+&& ${BINDIR}/6502-c++ -i ${ofile/.o/.avr.s} -o ${ofile/.o/.6502.s} -v6 \
 && ${BINDIR}/cc65/bin/ca65 -U -o ${ofile} ${ofile/.o/.6502.s}
 
 # && ${BINDIR}/xa65 ${XAFLAGS} -o ${ofile/.o/.oxa} ${ofile/.o/.6502.s} \
