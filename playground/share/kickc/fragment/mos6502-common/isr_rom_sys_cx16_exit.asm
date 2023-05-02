@@ -1,1 +1,1 @@
-jmp $e034
+jmp (isr_vsync)
