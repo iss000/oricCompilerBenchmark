@@ -20,7 +20,10 @@ CPPFLAGS="${CPPFLAGS} -nostdinc++"
 
 AFLAGS=""
 
-${BASE}/bin/mos-clang -c ${CFLAGS} ${INCLUDES} -o ${ofile} ${ifile}
+# MOS_CLANG=mos-clang
+MOS_CLANG=clang
 
-# ${BASE}/bin/mos-clang -S ${CFLAGS} ${INCLUDES} -o ${ofile/.o/.s} ${ifile}
-# ${BASE}/bin/mos-clang -c ${AFLAGS} ${INCLUDES} -o ${ofile} ${ofile/.o/.s}
+${BASE}/bin/$MOS_CLANG -c ${CFLAGS} ${INCLUDES} -o ${ofile} ${ifile}
+
+# ${BASE}/bin/$MOS_CLANG -S ${CFLAGS} ${INCLUDES} -o ${ofile/.o/.s} ${ifile}
+# ${BASE}/bin/$MOS_CLANG -c ${AFLAGS} ${INCLUDES} -o ${ofile} ${ofile/.o/.s}
