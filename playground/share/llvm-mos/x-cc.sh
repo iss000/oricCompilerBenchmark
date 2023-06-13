@@ -6,7 +6,7 @@ ifile=${1}; shift
 
 # VERBOSE="-v"
 
-# [ -z "${OPT}" ] && OPT="-O2"
+# [ -z "${OPT}" ] && OPT="-Os"
 
 CFLAGS="${CFLAGS} --target=mos -D__LLVM_MOS__"
 CFLAGS="${CFLAGS} ${VERBOSE}"

@@ -30,7 +30,7 @@ compilers_make_param_size = {
   ['cc65']        = '-O',
   ['gcc-6502']    = '-O2',
   ['kickc']       = '',
-  ['llvm-mos']    = '-O2',
+  ['llvm-mos']    = '-Oz',
   ['osdk-lcc65']  = '-O2',
   ['sdcc']        = '--opt-code-size',
   ['vbcc']        = '-O=991',
@@ -41,7 +41,7 @@ compilers_make_param_speed = {
   ['cc65']        = '-Oirs',
   ['gcc-6502']    = '-O3',
   ['kickc']       = '',                 -- -Ocoalesce -Oliverangecallpath -Oloophead',
-  ['llvm-mos']    = '-O3',
+  ['llvm-mos']    = '-Os',
   ['osdk-lcc65']  = '-O2',
   ['sdcc']        = '--opt-code-speed', -- --peep-asm --peep-return
   ['vbcc']        = '-O=1023',
