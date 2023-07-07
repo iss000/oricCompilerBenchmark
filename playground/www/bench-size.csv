@@ -134,7 +134,7 @@
 "cc65","shell-sort",1618,1295463,4513897,0
 "gcc-6502","shell-sort",1797,710675,2337837,0
 "kickc","shell-sort",0,0,0,1
-"llvm-mos","shell-sort",1412,426689,1269428,0
+"llvm-mos","shell-sort",1416,433861,1280381,0
 "osdk-lcc65","shell-sort",2172,1188789,3704984,0
 "sdcc","shell-sort",2498,198634,656935,3
 "vbcc","shell-sort",1606,767445,2458457,0
@@ -148,7 +148,7 @@
 "cc65","eight-queens",1084,8042882,28729340,0
 "gcc-6502","eight-queens",1067,1589670,4725549,0
 "kickc","eight-queens",593,1741322,5565918,0
-"llvm-mos","eight-queens",643,1053414,2944441,0
+"llvm-mos","eight-queens",647,1053414,2944505,0
 "osdk-lcc65","eight-queens",2649,23357198,72651727,0
 "sdcc","eight-queens",1173,4450966,14030163,0
 "vbcc","eight-queens",917,3140050,9766336,0
