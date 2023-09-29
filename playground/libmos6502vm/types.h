@@ -52,7 +52,12 @@ typedef unsigned long uint32_t;
 
 // ---------------------------------------------------------------------
 #ifndef __HOST_C__
+// see issue #6
+#ifdef HAVE_VOLATILE
+#define MEMPTR(address)       ((volatile uint8_t*)(address))
+#else
 #define MEMPTR(address)       ((uint8_t*)(address))
+#endif
 #define peek(address)         (MEMPTR(address)[0])
 #define poke(address,value)   (MEMPTR(address)[0]=((uint8_t)(value)))
 #else

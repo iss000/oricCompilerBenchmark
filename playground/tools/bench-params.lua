@@ -52,11 +52,12 @@ compilers_make_param_speed = {
 -- some extra defines per compiler
 --
 compilers_make_param = {
-  ['cc65']        = '-D__CC65__',
-  ['gcc-6502']    = '-D__GCC_6502__',
-  ['kickc']       = '-D__KICKC__',
-  ['llvm-mos']    = '-D__LLVM_MOS__ -Wno-shift-negative-value -Wno-incompatible-pointer-types',
+  ['cc65']        = '-D__CC65__         -DHAVE_VOLATILE',
+  ['gcc-6502']    = '-D__GCC_6502__     -DHAVE_VOLATILE',
+  ['kickc']       = '-D__KICKC__        ',
+  ['llvm-mos']    = '-D__LLVM_MOS__     -DHAVE_VOLATILE -Wno-shift-negative-value -Wno-incompatible-pointer-types',
   ['osdk-lcc65']  = '',
-  ['sdcc']        = '-D__SDCC__',
+  ['sdcc']        = '-D__SDCC__         ',
+  ['vbcc']        = '-D__VBCC__         -DHAVE_VOLATILE',
 --   ['6502-c++']    = '-D__6502_CPP__',
   }

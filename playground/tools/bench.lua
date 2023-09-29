@@ -26,7 +26,7 @@ local function cmdadd(...) table.insert(...) end
 --
 -- load setable params
 --
-dofile(arg[0]:gsub('bench.lua','bench-params.lua'))
+dofile(arg[0]:gsub('%.lua','-params.lua'))
 
 local benches = {
   'type-sizes',
