@@ -12,7 +12,7 @@ body {
   border: 0;
   font: inherit;
   vertical-align: baseline;
-  background: #ccc;
+/*   background: #ffffff; */
   color: #111;
   font-family: "Tahoma", sans-serif;
   font-size: 16px;
@@ -26,6 +26,7 @@ h6 {
 table {
   font: inherit;
   font-size: 16px;
+  border: 1px solid #c8c7c7;
 }
 
 th {
@@ -55,7 +56,7 @@ td {
   border: 0;
   font: inherit;
   vertical-align: middle;
-  background: #ebebeb;
+/*   background: #ebebeb; */
   color: #444;
   border-right: 1px solid #c8c7c7;
   border-bottom: 1px solid #c8c7c7;
