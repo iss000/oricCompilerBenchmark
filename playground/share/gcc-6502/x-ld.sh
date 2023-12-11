@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ofile=${1}; shift
 test -z "${START}" && { echo "START undefined."; exit 1; }
 

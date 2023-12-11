@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 PASSES="size speed"
 DATE="$(date '+%Y-%m-%d')"

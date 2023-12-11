@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 SRCDIR=$(dirname $0)/src
 SRC2DIR=$(dirname $0)/src2
