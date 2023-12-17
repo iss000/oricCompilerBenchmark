@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ x"$(basename $(pwd))" != x"samples" ]
 then
