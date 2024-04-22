@@ -11,11 +11,11 @@
 
 ---
 
-This is work-in-progress and frequenty updates are possible.
+This is work-in-progress and frequent updates are possible.
 All feedback, bug reporting and opinions are highly appreciated!
 To discuss use pull-requests, issue tracking or [Defence-force](https://forum.defence-force.org/viewtopic.php?t=2501) forum.
 
-Click to see: [Latest Benchmark Results](https://raxiss.com/article/id/30-MOS6502-compiler-benchmark).
+Click to see: [Latest Benchmark Results (2024-04-22)](https://raxiss.com/article/id/30-MOS6502-compiler-benchmark).
 
 ---
 
@@ -31,6 +31,8 @@ Click to see: [Latest Benchmark Results](https://raxiss.com/article/id/30-MOS650
   * ` osdk             `
   * ` sdcc-m6502       `
   * ` vbcc             `
+  * ` oscar64          ` (still under construction)
+
 
 ---
 #### Requirements
