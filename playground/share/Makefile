@@ -182,6 +182,14 @@ $(TARGETDIRO)/%.o: $(BENCHDIR)/%.c
 	$(QQQ) "[CPP] $(notdir $@)"
 	$(CALL) $(CC) $@ $<
 
+$(TARGETDIRO)/%.o: $(BENCHDIR)/%.cc
+	$(QQQ) "[CPP] $(notdir $@)"
+	$(CALL) $(CC) $@ $<
+
+$(TARGETDIRO)/%.o: $(BENCHDIR)/%.cpp
+	$(QQQ) "[CPP] $(notdir $@)"
+	$(CALL) $(CC) $@ $<
+
 
 
 $(DIROBJ)/%.o: $(SHARE)/$(COMPILER)/%.s
@@ -189,6 +197,14 @@ $(DIROBJ)/%.o: $(SHARE)/$(COMPILER)/%.s
 	$(CALL) $(CA) $@ $<
 
 $(DIROBJ)/%.o: $(SHARE)/$(COMPILER)/%.c
+	$(QQQ) "[CPP] $(notdir $@)"
+	$(CALL) $(CC) $@ $<
+
+$(DIROBJ)/%.o: $(SHARE)/$(COMPILER)/%.cc
+	$(QQQ) "[CPP] $(notdir $@)"
+	$(CALL) $(CC) $@ $<
+
+$(DIROBJ)/%.o: $(SHARE)/$(COMPILER)/%.cpp
 	$(QQQ) "[CPP] $(notdir $@)"
 	$(CALL) $(CC) $@ $<
 
@@ -205,6 +221,14 @@ $(DIROBJ)/lib$(COMPILER)-src/%.o: $(SHARE)/$(COMPILER)/lib$(COMPILER)-src/%.c
 	$(QQQ) "[CPP] $(notdir $@)"
 	$(CALL) $(CC) $@ $<
 
+$(DIROBJ)/lib$(COMPILER)-src/%.o: $(SHARE)/$(COMPILER)/lib$(COMPILER)-src/%.cc
+	$(QQQ) "[CPP] $(notdir $@)"
+	$(CALL) $(CC) $@ $<
+
+$(DIROBJ)/lib$(COMPILER)-src/%.o: $(SHARE)/$(COMPILER)/lib$(COMPILER)-src/%.cpp
+	$(QQQ) "[CPP] $(notdir $@)"
+	$(CALL) $(CC) $@ $<
+
 
 $(DIROBJ)/libnone.a: $(LIBNONEOBJ)
 	$(QQQ) "[LIB] $(notdir $@)"
@@ -218,6 +242,14 @@ $(DIROBJ)/libnone/%.o: $(SHARE)/$(COMPILER)/libnone/%.c
 	$(QQQ) "[CPP] $(notdir $@)"
 	$(CALL) $(CC) $@ $<
 
+$(DIROBJ)/libnone/%.o: $(SHARE)/$(COMPILER)/libnone/%.cc
+	$(QQQ) "[CPP] $(notdir $@)"
+	$(CALL) $(CC) $@ $<
+
+$(DIROBJ)/libnone/%.o: $(SHARE)/$(COMPILER)/libnone/%.cpp
+	$(QQQ) "[CPP] $(notdir $@)"
+	$(CALL) $(CC) $@ $<
+
 
 $(DIROBJ)/libmos6502vm.a: $(LIBMOS6502VMOBJ)
 	$(QQQ) "[LIB] $(notdir $@)"
@@ -228,6 +260,14 @@ $(DIROBJ)/libmos6502vm/%.o: libmos6502vm/%.s
 	$(CALL) $(CA) $@ $<
 
 $(DIROBJ)/libmos6502vm/%.o: libmos6502vm/%.c
+	$(QQQ) "[CPP] $(notdir $@)"
+	$(CALL) $(CC) $@ $<
+
+$(DIROBJ)/libmos6502vm/%.o: libmos6502vm/%.cc
+	$(QQQ) "[CPP] $(notdir $@)"
+	$(CALL) $(CC) $@ $<
+
+$(DIROBJ)/libmos6502vm/%.o: libmos6502vm/%.cpp
 	$(QQQ) "[CPP] $(notdir $@)"
 	$(CALL) $(CC) $@ $<
 
