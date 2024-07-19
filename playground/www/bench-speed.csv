@@ -106,7 +106,7 @@
 "cc65","merge-sort",2434,944769,3108194,0
 "gcc-6502","merge-sort",5547,687268,2309666,0
 "kickc","merge-sort",0,0,0,1
-"llvm-mos","merge-sort",0,0,0,1
+"llvm-mos","merge-sort",8209,540278,1646634,0
 "osdk-lcc65","merge-sort",4270,1272299,4028621,0
 "sdcc","merge-sort",4160,16883,58244,3
 "vbcc","merge-sort",2376,697687,2365205,0
@@ -120,14 +120,14 @@
 "cc65","counting-sort",2101,511665,1674284,0
 "gcc-6502","counting-sort",2567,91836424,300000001,2
 "kickc","counting-sort",0,0,0,1
-"llvm-mos","counting-sort",0,0,0,1
+"llvm-mos","counting-sort",7824,75002196,300000001,2
 "osdk-lcc65","counting-sort",3737,659676,2137721,0
 "sdcc","counting-sort",3983,88185,281710,3
 "vbcc","counting-sort",1993,411970,1385238,0
 "cc65","radix-sort",2570,1826716,6022813,0
 "gcc-6502","radix-sort",3195,97476550,300000001,2
 "kickc","radix-sort",0,0,0,1
-"llvm-mos","radix-sort",0,0,0,1
+"llvm-mos","radix-sort",8795,100000507,300000002,2
 "osdk-lcc65","radix-sort",4659,2388241,7924337,0
 "sdcc","radix-sort",4727,26709,89358,3
 "vbcc","radix-sort",2561,1938369,6506819,0
@@ -148,7 +148,7 @@
 "cc65","eight-queens",1063,7945084,28143974,0
 "gcc-6502","eight-queens",1144,1446454,4352300,0
 "kickc","eight-queens",593,1741322,5565918,0
-"llvm-mos","eight-queens",0,0,0,1
+"llvm-mos","eight-queens",6769,1072647,3061098,0
 "osdk-lcc65","eight-queens",2649,23357198,72651727,0
 "sdcc","eight-queens",1173,4450966,14030163,0
 "vbcc","eight-queens",910,2765966,8559402,0

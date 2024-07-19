@@ -11,9 +11,7 @@ ifile=${1}; shift
 CFLAGS="${CFLAGS} --target=mos -D__LLVM_MOS__"
 CFLAGS="${CFLAGS} ${VERBOSE}"
 CFLAGS="${CFLAGS} ${OPT}"
-# CFLAGS="${CFLAGS} -xc"
 # CFLAGS="${CFLAGS} -flto"
-# CFLAGS="${CFLAGS} --std=c99 -Wno-incompatible-library-redeclaration"
 CFLAGS="${CFLAGS} -funsigned-char"
 CFLAGS="${CFLAGS} -nostdinc"
 
@@ -26,9 +24,9 @@ extension="${filename##*.}"
 filename="${filename%.*}"
 
 case "$extension" in
-  c)   MOS_CLANG=clang ;;
-  cc)  MOS_CLANG=clang++ ;;
-  cpp) MOS_CLANG=clang++ ;;
+  c)   MOS_CLANG="clang -xc --std=c99" ;;
+  cc)  MOS_CLANG="clang++ -xc++" ;;
+  cpp) MOS_CLANG="clang++ -xc++" ;;
 esac
 
 ${BASE}/bin/$MOS_CLANG -c ${CFLAGS} ${INCLUDES} -o ${ofile} ${ifile}
