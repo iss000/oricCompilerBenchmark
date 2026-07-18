@@ -24,9 +24,9 @@ extension="${filename##*.}"
 filename="${filename%.*}"
 
 case "$extension" in
-  c)   MOS_CLANG="clang -xc --std=c99" ;;
-  cc)  MOS_CLANG="clang++ -xc++" ;;
-  cpp) MOS_CLANG="clang++ -xc++" ;;
+  c)   MOS_CLANG="mos-clang -xc --std=c99" ;;
+  cc)  MOS_CLANG="mos-clang++ -xc++" ;;
+  cpp) MOS_CLANG="mos-clang++ -xc++" ;;
 esac
 
 ${BASE}/bin/$MOS_CLANG -c ${CFLAGS} ${INCLUDES} -o ${ofile} ${ifile}

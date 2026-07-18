@@ -6,6 +6,6 @@ AFLAGS=""
 AFLAGS="${AFLAGS} --target=mos"
 
 # MOS_CLANG=$MOS_CLANG
-MOS_CLANG=clang
+MOS_CLANG=mos-clang
 
 ${BASE}/bin/$MOS_CLANG -c ${AFLAGS} ${INCLUDES} -o ${ofile} ${ifile}
