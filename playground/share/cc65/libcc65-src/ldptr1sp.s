@@ -1,20 +1,20 @@
 ;
-; Ullrich von Bassewitz, 31.08.1998
+; Colin Leroy-Mira, 2025-07-26
 ;
-; CC65 runtime: Load ax from offset in stack
+; CC65 runtime: Load ptr1 from offset in stack
 ;
 
-        .export         ldax0sp, ldaxysp
-        .importzp       c_sp
+        .export         ldptr10sp, ldptr1ysp
+        .importzp       c_sp, ptr1
 
 ; Beware: The optimizer knows about the value in Y after return!
 
-ldax0sp:
+ldptr10sp:
         ldy     #1
-ldaxysp:
+ldptr1ysp:
         lda     (c_sp),y        ; get high byte
-        tax                     ; and save it
+        sta     ptr1+1          ; and save it
         dey                     ; point to lo byte
         lda     (c_sp),y        ; load low byte
+        sta     ptr1
         rts
-
