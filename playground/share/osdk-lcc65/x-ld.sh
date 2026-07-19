@@ -5,7 +5,8 @@ ofile=${1}; shift
 OBJS=(); for i in $*; do OBJS+="${i/.o/.s} "; done
 LDLIBS=(); for i in ${LIBS}; do LDLIBS+="-d ${i/.a/}/ "; done
 LDLIBS+="-d $(dirname $(dirname ${ofile}))/ "
-LDFLAGS="-q -c0" # -v"
+LDFLAGS="-q -c0"
+# LDFLAGS="$LDFLAGS -v"
 
 touch $(dirname $(dirname ${ofile}))/library.ndx
 

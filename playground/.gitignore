@@ -2,7 +2,9 @@ bin
 obj
 bin-*
 obj-*
-
 *.log
 
+issues.txt
+
 samples-wait/*
+

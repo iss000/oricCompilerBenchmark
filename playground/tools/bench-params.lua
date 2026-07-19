@@ -33,11 +33,11 @@ compilers_make_param_size = {
   ['kickc']          = '',
   ['llvm-mos']       = '-Oz',
   ['osdk-lcc65']     = '-O2',
-  ['osdk-lcc65-ng']  = '-O2',
+  ['osdk-lcc65-ng']  = '-O3',
   ['sdcc']           = '--opt-code-size',
   ['vbcc']           = '-O=991',
   ['oscar64']        = '-Os',
---   ['gcc-6502']    = '-O2',
+  ['gcc-6502']       = '-O2',
 --   ['6502-c++']    = '-O2',
   }
 
@@ -46,11 +46,11 @@ compilers_make_param_speed = {
   ['kickc']          = '',                 -- -Ocoalesce -Oliverangecallpath -Oloophead',
   ['llvm-mos']       = '-Os',
   ['osdk-lcc65']     = '-O2',
-  ['osdk-lcc65-ng']  = '-O2',
+  ['osdk-lcc65-ng']  = '-O3',
   ['sdcc']           = '--opt-code-speed', -- --peep-asm --peep-return
   ['vbcc']           = '-O=1023',
   ['oscar64']        = '-O3',
---   ['gcc-6502']    = '-O3',
+  ['gcc-6502']       = '-O3',
 --   ['6502-c++']    = '-O3',
   }
 
@@ -66,6 +66,6 @@ compilers_make_param = {
   ['sdcc']           = '-D__SDCC__         -DHAVE_VOLATILE',
   ['vbcc']           = '-D__VBCC__         -DHAVE_VOLATILE',
   ['oscar64']        = '-d__OSCAR64__      ',
---   ['gcc-6502']    = '-D__GCC_6502__     -DHAVE_VOLATILE',
+  ['gcc-6502']       = '-D__GCC_6502__     -DHAVE_VOLATILE',
 --   ['6502-c++']    = '-D__6502_CPP__',
   }
