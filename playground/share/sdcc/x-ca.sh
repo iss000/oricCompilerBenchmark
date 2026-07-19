@@ -9,5 +9,6 @@ ifile=${1}; shift
 
 AFLAGS="--target none"
 
-${BASE}/bin/sdas-to-ca65.lua ${ifile} ${ofile/.o/.a65} \
+# ${BASE}/bin/sdas-to-ca65.lua ${ifile} ${ofile/.o/.a65} \
+$(dirname $0)/sdas-to-ca65.lua ${ifile} ${ofile/.o/.a65} \
 && ${BASE}/../cc65/bin/ca65 ${AFLAGS} ${INCLUDES} -o ${ofile} ${ofile/.o/.a65}

@@ -59,7 +59,7 @@ CFLAGS="${CFLAGS} --out-fmt-ihx"
 # ##################################################################
 
 ${BASE}/../cc65/bin/ld65 -C share/sdcc/none.cfg \
--vm -m ${ofile/.prg/.map} -o ${ofile} $* ${LDFLAGS} ${LIBS}
+  -vm -m ${ofile/.prg/.map} -o ${ofile} $* ${LDFLAGS} ${LIBS}
 
 LUA_MAP_TO_SYM=$(cat << 'EOF'
 local function error(s) print(s); os.exit(-1) end
