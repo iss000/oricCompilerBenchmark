@@ -5,11 +5,11 @@ ofile=${1}; shift
 OBJS=(); for i in $*; do OBJS+="${i/.o/.s} "; done
 LDLIBS=(); for i in ${LIBS}; do LDLIBS+="-d ${i/.a/}/ "; done
 LDLIBS+="-d $(dirname $(dirname ${ofile}))/ "
-LDFLAGS="-q -c0" # -v"
+LDFLAGS="-q -c0 -v"
 
 touch $(dirname $(dirname ${ofile}))/library.ndx
 
-${BASE}/bin/link65-ng -b ${LDFLAGS} ${LDLIBS} -o ${ofile/.prg/.o1} ${OBJS[@]} \
+${BASE}/bin/link65+ -b ${LDFLAGS} ${LDLIBS} -o ${ofile/.prg/.o1} ${OBJS[@]} \
 && ${BASE}/bin/xa -bt ${START} -o ${ofile} -l ${ofile/.prg/.sym} ${ofile/.prg/.o1}
 
 #  peepholeopt don't work

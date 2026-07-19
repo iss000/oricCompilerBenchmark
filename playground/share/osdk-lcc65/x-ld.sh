@@ -9,7 +9,7 @@ LDFLAGS="-q -c0" # -v"
 
 touch $(dirname $(dirname ${ofile}))/library.ndx
 
-${BASE}/bin/link65 -b ${LDFLAGS} ${LDLIBS} -o ${ofile/.prg/.o1} ${OBJS[@]} \
+${BASE}/bin/link65+ -b ${LDFLAGS} ${LDLIBS} -o ${ofile/.prg/.o1} ${OBJS[@]} \
 && ${BASE}/bin/xa -bt ${START} -o ${ofile} -l ${ofile/.prg/.sym} ${ofile/.prg/.o1}
 
 #  peepholeopt don't work
