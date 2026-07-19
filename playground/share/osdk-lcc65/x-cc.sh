@@ -3,7 +3,7 @@ ofile=${1}; shift
 ifile=${1}; shift
 
 # ### OSDK native
-MACROS="${BASE}/macro/macros.h"
+MACROS="${BASE}/macro/macros-1.40.h"
 C1FLAGS="-DXA -Wall -lang-c++"
 
 # -O0 no optimization
@@ -18,7 +18,7 @@ CFLAGS="${CFLAGS} ${OPT}"
 NFLAG=$(basename ${ifile})
 NFLAG="${NFLAG//[^[:alnum:]]/_}"
 
-RCC=${RCC:-compiler}
+RCC=${RCC:-compiler-1.40}
 # RCC=${RCC:-lcc65}
 
 #TODO: why cpp doesn't work on second call ???

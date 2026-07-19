@@ -17,11 +17,11 @@ strupr1
         beq strupr2     ; end of string
 
         tax             ; code adapted from _tolower
-        lda ctype,x
+	lda ctype,x
         and #$02        ;_L
         beq strupr1b    ;skip if not upper-case
         sec
-        txa             ;original char
+	txa		;original char
         sbc #$20        ;force upper case
 
 strupr1a

@@ -12,7 +12,7 @@ _strcat
         sta strcat1+2
         sta strcat3+1   ; copy return value, high
         dey             ; Y=#0
-        lda (sp),y
+	lda (sp),y
         sta strcat1+1
         sta strcat3+3   ; copy return value, low
 
@@ -39,10 +39,10 @@ strcat1a
         ldx #$00
 
 strcat2
-        lda $2211,x
-        sta $5544,x
+	lda $2211,x
+	sta $5544,x
         beq strcat3     ; found terminating null?
-        inx
+	inx
         bne strcat2
         inc strcat2+2
         inc strcat2+5

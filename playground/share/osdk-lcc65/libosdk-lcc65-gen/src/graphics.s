@@ -1,7 +1,7 @@
 ; The rest of the hires and sound routines. Use Params.
         
 _curset
-                ;jmp _curset
+		;jmp _curset
         ldx #3         ;Get three parms
         jsr getXparm
         jsr $f0c8      ;curset

@@ -20,24 +20,24 @@ strncmploop
 
 strncmp1
         lda (op1),Y
-        cmp (op2),Y
+	cmp (op2),Y
         bne strncmpend
-        cmp #0
+	cmp #0
         beq strncmpend0
-        iny
+	iny
         bne strncmploop
-        inc op1+1
-        inc op2+1
+	inc op1+1
+	inc op2+1
         jmp strncmploop
 
 strncmpend0
-        jmp retzero
+	jmp retzero
 strncmpend
-        sec
-        sbc (op2),Y
-        tax
-        lda #0
-        bcs *+4
-        lda #$ff
-        rts
+	sec
+	sbc (op2),Y
+	tax
+	lda #0
+	bcs *+4
+	lda #$ff
+	rts
 

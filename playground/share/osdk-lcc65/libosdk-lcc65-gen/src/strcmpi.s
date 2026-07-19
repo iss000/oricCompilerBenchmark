@@ -1,7 +1,7 @@
 ;int strcmpi(char *s1, char *s2)
 _strcmpi
-        jsr get_2ptr
-        ldy #0
+	jsr get_2ptr
+	ldy #0
 
 strcmpiloop
         lda (op2),Y     ; toupper(*s2), store in tmp
@@ -20,22 +20,22 @@ strcmpiloop
         cmp tmp
 
         bne strcmpiend
-        cmp #0
+	cmp #0
         beq strcmpiend0
-        iny
+	iny
         bne strcmpiloop
-        inc op1+1
-        inc op2+1
+	inc op1+1
+	inc op2+1
         jmp strcmpiloop
 
 strcmpiend0
-        jmp retzero
+	jmp retzero
 strcmpiend
-        sec
+	sec
         sbc tmp
-        tax
-        lda #0
-        bcs *+4
-        lda #$ff
-        rts
+	tax
+	lda #0
+	bcs *+4
+	lda #$ff
+	rts
 

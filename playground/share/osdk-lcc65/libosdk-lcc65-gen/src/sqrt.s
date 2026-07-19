@@ -47,9 +47,9 @@ skip1
 skip2
     inx         ; r = r or d (d is 1 here)
 skip3
-        lda #0
+	lda #0
     rts
-.)              
+.)		
 
 stab:   .byt $01,$02,$04,$08,$10,$20,$40,$80
 

@@ -17,12 +17,12 @@ strlwr1
         beq strlwr2     ; end of string
 
         tax             ; code adapted from _tolower
-        lda ctype,x
-        and #$01        ;_U
+	lda ctype,x
+	and #$01	;_U
         beq strlwr1b    ;skip if not upper-case
-        clc
-        txa             ;original char
-        adc #$20        ;force lower case
+	clc
+	txa		;original char
+	adc #$20	;force lower case
 
 strlwr1a
         sta $2211,y     ;store back into string

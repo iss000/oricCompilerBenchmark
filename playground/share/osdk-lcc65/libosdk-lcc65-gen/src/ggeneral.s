@@ -23,6 +23,6 @@ getXloop
 grexit        
         lda $2e0       ;Return error from Graphics or sound routines
 grexit2        
-        tax
-        lda #0
+	tax
+	lda #0
         rts 

@@ -1,6 +1,6 @@
 ;int strncmpi(char *s1, char *s2, int n)
 _strncmpi
-        jsr get_2ptr
+	jsr get_2ptr
 
         ldy #5
         lda (sp),y      ; get n
@@ -8,7 +8,7 @@ _strncmpi
         dey
         lda (sp),y
         sta tmp         ; tmp=lo(n)
-        ldy #0
+	ldy #0
 
 strncmpiloop
         ldx tmp
@@ -39,22 +39,22 @@ strncmpi1
         cmp tmp1
 
         bne strncmpiend
-        cmp #0
+	cmp #0
         beq strncmpiend0
-        iny
+	iny
         bne strncmpiloop
-        inc op1+1
-        inc op2+1
+	inc op1+1
+	inc op2+1
         jmp strncmpiloop
 
 strncmpiend0
-        jmp retzero
+	jmp retzero
 strncmpiend
-        sec
+	sec
         sbc tmp1
-        tax
-        lda #0
-        bcs *+4
-        lda #$ff
-        rts
+	tax
+	lda #0
+	bcs *+4
+	lda #$ff
+	rts
 

@@ -1,5 +1,5 @@
-_sedoric                ; invoke a SEDORIC command using black magic
-                        ; Watch it! I have reasons to believe this is broken
+_sedoric		; invoke a SEDORIC command using black magic
+			; Watch it! I have reasons to believe this is broken
         ldy #$0         ; grab string pointer
         lda (sp),y
         sta tmp

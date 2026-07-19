@@ -11,9 +11,9 @@ _strncpy
 
         ldy op1
         sty strncpyend+3
-        lda op1+1
+	lda op1+1
         sta strncpyend+1
-        ldy #0
+	ldy #0
 
 strncpyloop
         dex             ; decrease n
@@ -26,17 +26,17 @@ strncpyloop
 
 strncpy1
         lda (op2),Y     ; copy characters
-        sta (op1),Y
+	sta (op1),Y
         beq strncpyend
-        iny
+	iny
         bne strncpyloop
-        inc op1+1
-        inc op2+1
+	inc op1+1
+	inc op2+1
         jmp strncpyloop
 
 strncpyend
         lda #$01        ; return s1
         ldx #$03
-        rts
+	rts
 
 

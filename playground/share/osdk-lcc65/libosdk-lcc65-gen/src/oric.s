@@ -19,7 +19,7 @@ _deek
     sta tmp+1
     ldy #$0
     lda (tmp),y     ; Get the low order byte
-        tax
+	tax
     iny             ; Next byte
     lda (tmp),y     ; Get high order byte
     rts
@@ -28,10 +28,10 @@ _deek
 _poke
     ldy #$0         ; Grab one 16-bit parameter
     lda (sp),y      ; LSB
-        sta tmp
-        iny
+	sta tmp
+	iny
     lda (sp),y      ; MSB
-        sta tmp+1
+	sta tmp+1
     iny
     lda (sp),y      ; Grab an 8-bit parameter
     ldy #$0
@@ -41,11 +41,11 @@ _poke
 _doke
     ldy #$0         ; Grab one 16-bit parameter
     lda (sp),y      ; LSB
-        sta tmp
-        iny
+	sta tmp
+	iny
     lda (sp),y      ; MSB
-        sta tmp+1
-        iny             ; Grab another 16-bit parameter
+	sta tmp+1
+	iny             ; Grab another 16-bit parameter
     lda (sp),y      ; Grab the LSB first
     ldy #$0
     sta (tmp),y    ; Poke the LSB
@@ -54,8 +54,8 @@ _doke
     ldy #$1
     sta (tmp),y    ; And poke it as well
     rts
-        
-_call                   ; Call a machine code routine
+	
+_call			; Call a machine code routine
     ldy #$0
     lda (sp),y
     sta tmp
@@ -64,7 +64,7 @@ _call                   ; Call a machine code routine
     sta tmp+1
     jmp (tmp)
 
-_bang           ; invoke the Basic '!' handler
+_bang		; invoke the Basic '!' handler
     ldy #$0         ; grab string pointer
     lda (sp),y
     sta $e9
