@@ -9,18 +9,18 @@
 #include <multiply.h>
 
 // PI*2 in u[4.28] format
-const unsigned long PI2_u4f28 = $6487ed51;
+const unsigned long PI2_u4f28 = 0x6487ed51;
 // PI in u[4.28] format
-const unsigned long PI_u4f28 = $3243f6a9;
+const unsigned long PI_u4f28 = 0x3243f6a9;
 // PI/2 in u[4.28] format
-const unsigned long PI_HALF_u4f28 = $1921FB54;
+const unsigned long PI_HALF_u4f28 = 0x1921FB54;
 
 // PI*2 in u[4.12] format
-const unsigned int PI2_u4f12 = $6488;
+const unsigned int PI2_u4f12 = 0x6488;
 // PI in u[4.12] format
-const unsigned int PI_u4f12 = $3244;
+const unsigned int PI_u4f12 = 0x3244;
 // PI/2 in u[4.12] format
-const unsigned int PI_HALF_u4f12 = $1922;
+const unsigned int PI_HALF_u4f12 = 0x1922;
 
 // Generate signed (large) unsigned int sine table - on the full -$7fff - $7fff range
 // sintab - the table to generate into
@@ -83,7 +83,7 @@ signed int sin16s(unsigned long x) {
     unsigned int x1 = WORD1(x<<3); // u[1.15]
     unsigned int x2 = mulu16_sel(x1, x1, 0); // u[2.14] x^2
     unsigned int x3 = mulu16_sel(x2, x1, 1); // u[2.14] x^3
-    unsigned int x3_6 = mulu16_sel(x3, $10000/6, 1);  // u[1.15] x^3/6;
+    unsigned int x3_6 = mulu16_sel(x3, 0x10000/6, 1);  // u[1.15] x^3/6;
     unsigned int usinx = x1 - x3_6; // u[1.15] x - x^3/6
     unsigned int x4 = mulu16_sel(x3, x1, 0); // u[3.13] x^4
     unsigned int x5 = mulu16_sel(x4, x1, 0); // u[4.12] x^5
@@ -113,7 +113,7 @@ signed char sin8s(unsigned int x) {
     char x1 = BYTE1(x<<3); // u[1.7]
     char x2 = mulu8_sel(x1, x1, 0); // u[2.6] x^2
     char x3 = mulu8_sel(x2, x1, 1); // u[2.6] x^3
-    const char DIV_6 = $2b; // u[0.7] - $2a.aa rounded to $2b
+    const char DIV_6 = 0x2b; // u[0.7] - $2a.aa rounded to $2b
     char x3_6 = mulu8_sel(x3, DIV_6, 1);  // u[1.7] x^3/6;
     char usinx = x1 - x3_6; // u[1.7] x - x^3/6
     char x4 = mulu8_sel(x3, x1, 0); // u[3.5] x^4

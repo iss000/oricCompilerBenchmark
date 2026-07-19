@@ -3,6 +3,28 @@
 #include <string.h>
 #include <ctype.h>
 
+/**
+ * @brief Fast copy of data from a source to a destination memory address.
+ * Since the amount of bytes to be copied is a byte long, it can be executed very fast.
+ * The parameter num can have a value 0, which in case is equal to 256,
+ * which allows 256 bytes to be copied using one single byte counter!
+ * Depending on the optimization of the compiler, this implementation can
+ * result in very fast code, but it should be inlined!
+ * 
+ * @param destination The memory address as the destination.
+ * @param source The memory address as the source.
+ * @param num The amount of bytes to be copied. A value of 0 will copy 256 bytes!!!
+ * @return void* The resulting destination memory address.
+ */
+char* memcpy_fast(char* destination, char* source, unsigned char num) {
+    do {
+        *(destination+num) = *(source+num);
+        num--;
+    } while(num);
+
+    return destination;
+}
+
 // Copy block of memory (forwards)
 // Copies the values of num bytes from the location pointed to by source directly to the memory block pointed to by destination.
 void* memcpy( void* destination, void* source, size_t num ) {
@@ -37,6 +59,28 @@ void *memset(void *str, char c, size_t num) {
     return str;
 }
 
+/**
+ * @brief Fast initialization of an area pointed by a destination memory address to one value c.
+ * Since the amount of bytes to be initialized is a byte long, it can be executed very fast.
+ * The parameter num can have a value 0, which in case is equal to 256,
+ * which allows 256 bytes to be copied using one single byte counter!
+ * Depending on the optimization of the compiler, this implementation can
+ * result in very fast code, but it should be inlined!
+ * 
+ * @param destination The destination memory address as the start of the memory area.
+ * @param c The byte value initializing the memory area..
+ * @param num The amount of bytes to be copied. A value of 0 will set an area of 256 bytes!!!
+ * @return void* The resulting destination memory address.
+ */
+inline char* memset_fast(char* destination, char c, unsigned char num) {
+    do {
+        *(destination+num) = c;
+        num--;
+    } while(num);
+
+    return destination;
+}
+
 // Copies the C string pointed by source into the array pointed by destination, including the terminating null character (and stopping at that point).
 char* strcpy( char* destination, char* source ) {
     char* src = source;
@@ -60,6 +104,16 @@ char *strncpy(char *dst, const char *src, size_t n) {
     }
     return dst;
 }
+
+// Concatenates the C string pointed by source into the array pointed by destination, including the terminating null character (and stopping at that point).
+char* strcat( char* destination, char* source ) {
+    char* src = source;
+    char* dst = destination + strlen(destination);
+    while(*src) *dst++ = *src++;
+    *dst = 0;
+    return destination;
+}
+
 
 // Converts a string to uppercase.
 char * strupr(char *str) {
@@ -143,3 +197,23 @@ int strncmp(const char *str1, const char *str2, size_t n) {
     }
     return (int)(signed char)(*s1-*s2);
 }
+
+/**
+ * @brief The string-error function, strerror, 
+ * is a C/C++ function which translates an error code, 
+ * usually stored in the global variable errno, 
+ * to a human-readable error message.
+ * 
+ * However, the POSIX standard is not followed in kickc. strerror accepts the errno parameter, but it is not used.
+ * Instead strerror returns the last known error.
+ * This is done for performance reasons and pragmatism, not to make error handling too memory intensive.
+ * 
+ * 
+ * @param errnum This variable is not used in the function, but kept for POSIX compatibility.
+ * @return char* the pointer to __errno_error, declared in errno.h (POSIX standard).
+ */
+char* strerror(int errnum) {
+    return __errno_error;
+}
+
+

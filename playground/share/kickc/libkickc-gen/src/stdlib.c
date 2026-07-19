@@ -4,7 +4,7 @@
 #include <string.h>
 
 // Top of the heap used by malloc()
-unsigned char* HEAP_TOP = (unsigned char*)0xa000;
+unsigned char* HEAP_TOP = (char*)0xa000;
 
 // Head of the heap. Moved backward each malloc()
 unsigned char* heap_head = HEAP_TOP;
@@ -260,7 +260,7 @@ int atoi(const char *str) {
         i++;
     }
     // Iterate through all digits and update the result
-    for (; str[i]; ++i)
+    for (; str[i]>='0' && str[i]<='9'; ++i)
         res = res * 10 + str[i] - '0';
     // Return result with sign
     if(negative)
@@ -286,7 +286,7 @@ inline long labs(long x) {
 }
 
 // The random state variable
-unsigned int rand_state = 1;
+volatile unsigned int rand_state = 1;
 
 // Returns a pseudo-random number in the range of 0 to RAND_MAX (65535)
 // Uses an xorshift pseudorandom number generator that hits all different values

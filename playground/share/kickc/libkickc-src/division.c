@@ -23,7 +23,7 @@ char divr8u(char dividend, char divisor, char rem) {
     char quotient = 0;
     for( char i : 0..7) {
         rem = rem << 1;
-        if( (dividend & $80) != 0 ) {
+        if( (dividend & 0x80) != 0 ) {
             rem = rem | 1;
         }
         dividend = dividend << 1;
@@ -57,7 +57,7 @@ unsigned int divr16u(unsigned int dividend, unsigned int divisor, unsigned int r
     unsigned int quotient = 0;
     for( char i : 0..15) {
         rem = rem << 1;
-        if( (BYTE1(dividend) & $80) != 0 ) {
+        if( (BYTE1(dividend) & 0x80) != 0 ) {
             rem = rem | 1;
         }
         dividend = dividend << 1;
