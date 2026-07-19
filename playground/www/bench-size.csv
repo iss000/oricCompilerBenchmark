@@ -152,3 +152,10 @@
 "osdk-lcc65-ng","eight-queens",2282,20241172,62197144,0
 "kickc","eight-queens",593,1741322,5565918,0
 "sdcc","eight-queens",1438,4604691,14516371,0
+"cc65","qrcode",17276,31233675,103515708,0
+"llvm-mos","qrcode",0,0,0,1
+"vbcc","qrcode",20513,16642701,52008812,3
+"osdk-lcc65","qrcode",37926,33548017,116997830,3
+"osdk-lcc65-ng","qrcode",30911,28789,90417,3
+"kickc","qrcode",0,0,0,1
+"sdcc","qrcode",0,0,0,1

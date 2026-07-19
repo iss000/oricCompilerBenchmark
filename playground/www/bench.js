@@ -32,6 +32,7 @@ var benches = [
   'shell-sort',
   'heap-sort',
   'eight-queens',
+  'qrcode',
 ];
 
 var resultsOpt = 'size';
