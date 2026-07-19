@@ -4,7 +4,7 @@
 --  ___ ___ _ _|_|___ ___
 -- |  _| .'|_'_| |_ -|_ -|
 -- |_| |__,|_,_|_|___|___|
---  iss@raxiss(c)2020,2023
+--  iss@raxiss(c)2020,2026
 
 -- usage:
 --  bench.lua <size|speed> [compiler|bench|<compiler bench>]
