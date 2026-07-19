@@ -42,9 +42,9 @@ strcspn2                ; inner loop, loop
 strcspn1a
         inx             ; back to the outer loop
         bne strcspn1
-        inc strcspn1+2
-        inc tmp2
-        jmp strcspn2
+        inc strcspn1+2  ; s1 crossed a page: advance the pointer high byte,
+        inc tmp2        ; count the page, and continue with the OUTER loop
+        jmp strcspn1    ; (jumping into the inner loop skipped s1[page*256])
 
 strcspn3
         lda tmp2

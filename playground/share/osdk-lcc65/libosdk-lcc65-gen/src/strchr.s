@@ -9,14 +9,15 @@ _strchr
         sta strchr1+2   ; high(s)
         iny
         lda (sp),y
-        sta strchr1+6   ; low(c)
+        sta strchr1+4   ; low(c) - operand of the cmp right after the lda
         ldx #0
 
 strchr1
         lda $2211,X
+        cmp #$06        ; compare BEFORE the end-of-string test: the
+        beq strchr3     ; terminator is part of the string per C89, so
+        cmp #0          ; strchr(s,'\0') must find it, not return NULL
         beq strchr2
-        cmp #$06
-        beq strchr3
         inx
         bne strchr1
         inc strchr1+2

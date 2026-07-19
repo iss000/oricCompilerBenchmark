@@ -8,7 +8,9 @@ _strstr
         sta tmp1
         lda op1+1
         sta strstr1+9
-        ldy #0
+        sta tmp1+1      ; page of the (potential) match start: needed if the
+        ldy #0          ; needle is empty, so success returns s1 unchanged
+        sty tmp2        ; offset of the (potential) match start
 
 strstr1                 ; main loop
         lda $2211,x     ; s2
@@ -19,7 +21,18 @@ strstr1                 ; main loop
 
         cmp tmp         ; compare *s1,*s2
         beq strstr2     ; equal?
-        jsr resets2     ; nope... reset s2 pointer
+
+        txa             ; mismatch: were we inside a partial match?
+        bne strstrrew
+        lda tmp+1
+        beq strstrnom   ; no: simply advance s1
+
+strstrrew
+        ldy tmp2        ; yes: rewind s1 to the match start (offset+page),
+        lda tmp1+1      ; so the search resumes at match start + 1 instead
+        sta strstr1+9   ; of skipping the partially matched characters
+strstrnom
+        jsr resets2     ; reset s2 pointer
         jmp strstr3     ; ...and go on to next *s1
 
 strstr2                 ; inc s2 pointer

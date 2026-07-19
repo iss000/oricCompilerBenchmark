@@ -1,6 +1,4 @@
 -header.s
-	enter
-	leave
 	_exit
 	exit
 	true
@@ -16,8 +14,9 @@
 	fdiv
 	fneg
 	fcomp
-	cif
-	cfi
+-frame.s
+	enter
+	leave
 -tail.s
 	endcode
 -irq.s
@@ -121,9 +120,15 @@
 	_doke
 	_call
 	_bang
+-atoi.s
+	_atoi
+-float.s
+	cif
+	cfi
 -printf.s
 	_printf
     _sprintf
+	_fprintf
 -lprintf.s
 	_lprintf
 -scanf.s
@@ -242,8 +247,12 @@
 	_OsdkTableMod6
 -overlay.s
 	_is_overlay_enabled
+-zeropage.s
+    _zp_swap
 -sedoric.s
     _sedoric
+    _sed_savefile
+    _sed_loadfile
 -joystick.s
     _joystick_type_select
     _joystick_read
