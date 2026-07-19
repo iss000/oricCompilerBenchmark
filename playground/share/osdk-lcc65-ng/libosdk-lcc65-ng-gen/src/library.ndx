@@ -57,6 +57,39 @@
 	_puts
 	_gets
 	gets
+-conio.s
+	__putc
+	__puts
+-long32ws.s
+	lscratch
+	lwork
+	lrem
+	lsign
+	ldtmp
+-long32add.s
+	ladd32
+	lsub32
+-long32log.s
+	land32
+	lor32
+	lxor32
+	lcom32
+-long32neg.s
+	lneg32
+-long32mul.s
+	lmul32
+-long32div.s
+	ldiv32u
+	lmod32u
+	ldiv32i
+	lmod32i
+-long32shl.s
+	llsh32
+	lrshl32
+	lasr32
+-long32cmp.s
+	lcmp32u
+	lcmp32i
 -graphics.s
 	_curset
 	_curmov
