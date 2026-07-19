@@ -6,7 +6,7 @@
 
 verbose = false         -- verbose compile and run
 
-debug_compile = 3       -- verbose compilation level (0,1,2,3)
+debug_compile = 0       -- verbose compilation level (0,1,2,3)
 debug_run_info = 0      -- mos6502vm shows some info (0,1)
 debug_run_dump = 0      -- dumps mos6502vm memory to file (0,1)
 debug_run_trace = 0     -- 6502 step-by-step disassembler (0,1,2)
