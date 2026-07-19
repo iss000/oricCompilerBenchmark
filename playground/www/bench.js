@@ -1,11 +1,12 @@
 var compilers = [
   'cc65',
-  'gcc-6502',
-  'kickc',
   'llvm-mos',
-  'osdk-lcc65',
-  'sdcc',
   'vbcc',
+  'osdk-lcc65',
+  'osdk-lcc65-ng',
+  'kickc',
+  'sdcc',
+  // 'gcc-6502',
 ];
 
 var benches = [
