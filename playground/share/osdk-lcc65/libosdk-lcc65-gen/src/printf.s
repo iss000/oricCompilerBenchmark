@@ -9,21 +9,6 @@ _printf
 	ldy #0
 	jmp printf
 
-;
-; fprintf(FILE *stream,char *format,...)
-;
-; The Oric has a single console, so the stream argument is accepted for
-; portability and ignored: this is printf with the arguments starting one
-; slot (2 bytes) later.
-;
-_fprintf
-	lda #<putchar
-	sta printvect+1
-	lda #>putchar
-	sta printvect+2
-	ldy #2
-	jmp printf
-
 printvect jmp $0238
 
 storechar
@@ -71,17 +56,6 @@ charput
 	iny
 	bne formloop	; size format string < 256
 endform
-	; sprintf must null-terminate the destination buffer: when the output
-	; vector points at storechar (sprintf mode), emit the final 0 too
-	lda printvect+1
-	cmp #<storechar
-	bne endform_done
-	lda printvect+2
-	cmp #>storechar
-	bne endform_done
-	lda #0
-	jsr printvect
-endform_done
 	rts
 printfloat
 	iny

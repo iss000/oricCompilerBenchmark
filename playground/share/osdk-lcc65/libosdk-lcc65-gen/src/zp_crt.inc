@@ -4,9 +4,9 @@
 ; Most of the documentation/comments are from
 ; 'Another Approach to Instruction Set Architecture - VAX'
 ;
-ap		.dsb 2		; Argument pointer - points to the base of the list of arguments or parameters in memory that are passed to the procedure @ptr16
-fp		.dsb 2		; Frame pointer - points to the base of the local variables of the procedure that are kept in memory (the stack frame) @ptr16
-sp		.dsb 2		; Stack pointer - points to the top of the stack @ptr16
+ap		.dsb 2		; Argument pointer - points to the base of the list of arguments or parameters in memory that are passed to the procedure
+fp		.dsb 2		; Frame pointer - points to the base of the local variables of the procedure that are kept in memory (the stack frame)
+sp		.dsb 2		; Stack pointer - points to the top of the stack
 
 tmp0	.dsb 2
 tmp1	.dsb 2

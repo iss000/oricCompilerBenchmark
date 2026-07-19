@@ -1,158 +1,131 @@
 ; void *realloc(void *mem_address, unsigned int newsize)
-;
-; Clean rewrite (the original in-place/grow logic was broken in every path:
-; a signed size comparison, a shrink path that read/wrote the wrong descriptor
-; field, and a grow path whose stack-based memcpy hack never actually resized
-; or re-accounted the block).
-;
-;   realloc(NULL, n)  -> malloc(n)
-;   realloc(p, 0)     -> free(p), return NULL
-;   shrink (newsize <= current): adjust the block in place
-;   grow   (newsize >  current): malloc a new block, copy the old contents,
-;                                free the old block
-;
-; Blocks carry a per-block descriptor of _heapovh bytes; memdesc->len (at
-; offset 2/3) is the TOTAL block size (usable size + _heapovh), matching the
-; convention malloc/free use. op1/op2/tmp/tmp5..tmp7 survive _mallocmc and
-; _freemc (which only touch tmp0..tmp4); we keep realloc's state there.
 
 _realloc
-        jsr get_2ptr            ; op1 = mem_address, op2 = newsize
+        jsr get_2ptr
 
-        lda op1                 ; if(!mem_address) return malloc(newsize)
+        lda op1         ; if(!mem_address)
         ora op1+1
-        bne realloc_have
-        lda op2
+        bne realloc0
+
+        lda op2         ; ...then just return malloc(newsize)
         ldx op2+1
         jmp _mallocmc
 
-realloc_have
-        lda op2                 ; if(!newsize) { free(mem_address); return NULL }
+realloc0
+        lda op2         ; if(!newsize)
         ora op2+1
-        bne realloc_resize
-        lda op1
-        ldx op1+1
-        jsr _freemc
-        jmp retzero
+        bne realloc1
 
-realloc_resize
-        lda op1                 ; tmp0 = memdesc = mem_address - heapovh
-        sec
+        lda op1         ; ...then just free(mem_address)
+        ldx op1+1
+        jmp _freemc
+
+realloc1                ; uh-oh, here comes the tough part
+        lda op1         ; tmp0=mem_address-_heapovh, to get the memdesc
+        sec             
         sbc _heapovh
         sta tmp0
         lda op1+1
         sbc #0
         sta tmp0+1
 
-        clc                     ; tmp1 = wanted = newsize + heapovh
-        lda op2
-        adc _heapovh
-        sta tmp1
-        lda op2+1
-        adc #0
-        sta tmp1+1
-
-        ldy #3                  ; compare memdesc->len vs wanted (unsigned)
-        lda (tmp0),y            ; len high
-        cmp tmp1+1
-        bcc realloc_grow        ; len < wanted -> grow
-        bne realloc_shrink      ; len > wanted -> shrink
-        dey
-        lda (tmp0),y            ; len low
-        cmp tmp1
-        bcc realloc_grow        ; len < wanted -> grow
-                                ; len >= wanted -> shrink in place
-
-realloc_shrink
-        ldy #2                  ; tmp = memdesc->len - wanted (bytes released)
-        sec
+        ldy #2          ; is the length of the block == newsize?
         lda (tmp0),y
-        sbc tmp1
-        sta tmp
+        cmp op2
+        bne realloc2    ; no, the low bytes are different
         iny
         lda (tmp0),y
-        sbc tmp1+1
-        sta tmp+1
+        cmp op2+1
+        bne realloc2    ; no, the high bytes are different
 
-        sec                     ; _nheapbytes -= tmp
-        lda _nheapbytes
-        sbc tmp
-        sta _nheapbytes
-        lda _nheapbytes+1
-        sbc tmp+1
-        sta _nheapbytes+1
-
-        ldy #2                  ; memdesc->len = wanted
-        lda tmp1
-        sta (tmp0),y
-        iny
-        lda tmp1+1
-        sta (tmp0),y
-
-        lda op1+1               ; return the same buffer (A=hi, X=lo)
+reallocret
+        lda op1+1       ; YES! No work to be done, just return the buffer
         ldx op1
         rts
 
-realloc_grow
-        ldy #2                  ; tmp5 = old usable size = memdesc->len - heapovh
-        sec                     ; (bytes to copy; safe across malloc/free)
+realloc2                ; argh, we REALLY have to resize the block!
+        lda op2+1       
+        cmp (tmp0),y    ; ok, last chance... is newsize<currentsize?
+        bmi realloc4    ; no, it's not, (HIGH newsize)>=(HIGH currentsize)
+        bcc realloc3    ; YES! Little work to be done!
+        lda op2
+        dey
+        cmp (tmp0),y    ; how about the low bytes?
+        bne realloc4    ; bummer, (LOW newsize)>(LOW currentsize)
+
+realloc3                ; Simple work to be done here.
+        ldy #0          ; Calculate currentsize-newsize, store in tmp1
+        sec
         lda (tmp0),y
-        sbc _heapovh
-        sta tmp5
+        sbc op2
+        sta tmp1
         iny
         lda (tmp0),y
-        sbc #0
-        sta tmp5+1
+        sbc op2+1
+        sta tmp1
 
-        lda op1                 ; tmp7 = copy source = old mem_address
-        sta tmp7                ; (op1 is kept intact for the free below)
-        lda op1+1
-        sta tmp7+1
+        sec             ; _nheapbytes-=tmp1
+        lda _nheapbytes
+        sbc tmp1
+        sta _nheapbytes
+        lda _nheapbytes+1
+        sbc tmp1+1
+        sta _nheapbytes+1
 
-        lda op2                 ; new = malloc(newsize)
+        dey             ; And adjust memdesc->len (current size)
+        lda op2         ; This will, of course, fragment the memory.
+        sta (tmp0),y    ; Oh well... 
+        iny
+        lda op2+1
+        sta (tmp0),y
+
+        jmp reallocret  ; return the same buffer pointer
+
+realloc4                ; Reallocating a larger buffer. Hmm...
+        lda op2
         ldx op2+1
-        jsr _mallocmc           ; returns A=hi, X=lo (0,0 on failure)
+        jsr _mallocmc   ; call malloc for a new buffer
 
-        sta tmp6+1              ; tmp6 = new pointer (return value, untouched)
-        stx tmp6
-        sta op2+1               ; op2 = copy destination (gets incremented)
-        stx op2
+        stx tmp         ; did it return NULL?
+        pha
+        ora tmp
+        bne realloc5
 
-        lda tmp6                ; if(new == NULL) return NULL (old block intact)
-        ora tmp6+1
-        bne realloc_copy
-        jmp retzero
+        jmp retzero     ; Oops... yes, it did. Return NULL.
 
-realloc_copy                    ; copy tmp5 bytes from (tmp7) to (op2)
-        ldx tmp5+1              ; whole pages first
-        beq realloc_copytail
-realloc_copypage
-        ldy #0
-realloc_copypl
-        lda (tmp7),y
-        sta (op2),y
+realloc5                ; Good, malloc din't return NULL.
+        pla             ; we'll be returning its return value, then.
+        sta reallocret2+1
+        stx reallocret2+3
+
+        ldy #1          ; this is a quick and dirty hack (AND ugly)
+        sta (sp),y      ; (AND maybe horribly buggy) :-(
+        dey
+        txa
+        sta (sp),y      ; first store the target block
+
+        ldy #2          ; then store the source block (mem_address)
+        lda op1
+        sta (sp),y
         iny
-        bne realloc_copypl
-        inc tmp7+1
-        inc op2+1
-        dex
-        bne realloc_copypage
-realloc_copytail
-        ldy tmp5               ; remaining 0..255 bytes
-        beq realloc_freeold
-        ldy #0
-realloc_copyrem
-        lda (tmp7),y
-        sta (op2),y
-        iny
-        cpy tmp5
-        bne realloc_copyrem
+        lda op1+1
+        sta (sp),y
 
-realloc_freeold
-        lda op1                 ; free(old mem_address)
+        iny             ; also store the number of bytes to copy
+        lda op2
+        sta (sp),y
+        iny
+        lda op2+1
+        sta (sp),y
+
+        jsr _memcpy     ; call memcpy()
+
+        lda op1         ; free(mem_address)
         ldx op1+1
         jsr _freemc
 
-        lda tmp6+1              ; return the new buffer (A=hi, X=lo)
-        ldx tmp6
+reallocret2             ; ...and return the new buffer
+        lda #1
+        ldx #3
         rts
+

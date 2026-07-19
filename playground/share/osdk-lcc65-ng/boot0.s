@@ -62,9 +62,10 @@ zp_compiler_save_end
 
 ; =====================================================================
                 .text
-; ; ; ; ---------------------------------------------------------------------
-; ; ; osdk_stack      =      __stack
-; ; ; ; ---------------------------------------------------------------------
+; ---------------------------------------------------------------------
+osdk_stack      =      __stack
+; ---------------------------------------------------------------------
+
 ; ; ; osdk_start
 ; ; ; ; ---------------------------------------------------------------------
 ; ; ; ; Needs to clear the BSS section
@@ -283,33 +284,34 @@ zp_compiler_save_end
 ; ; ;                 lda   $D4
 ; ; ;                 rts
 ; ; ;
-; ; ; ; ---------------------------------------------------------------------
-; ; ; #define          load_acc1       $DE7B
-; ; ; #define          load_acc2       $DD51
-; ; ; #define          store_acc       $DEAD
-; ; ; #define          fadd            $DB25
-; ; ; #define          fsub            $DB0E
-; ; ; #define          fmul            $DCF0
-; ; ; #define          fdiv            $DDE7
-; ; ; #define          fneg            $E271
-; ; ; #define          fcomp           $DF4C
-; ; ; #define          cif             $DF24
-; ; ;
-; ; ; #define          VIA_PORTB       $0300  ; Input/Output register B
-; ; ; #define          VIA_PORTAH      $0301  ; Input/Output register A (with handshake)
-; ; ; #define          VIA_DDRB        $0302  ; Data Direction Register B
-; ; ; #define          VIA_DDRA        $0303  ; Data Direction Register A
-; ; ; #define          VIA_T1CL        $0304  ; Timer 1 low-order latches/counter
-; ; ; #define          VIA_T1CH        $0305  ; Timer 1 high-order counter
-; ; ; #define          VIA_T1LL        $0306  ; Timer 1 low-order latches
-; ; ; #define          VIA_T1LH        $0307  ; Timer 1 high-order latches
-; ; ; #define          VIA_T2LL        $0308  ; Timer 2 low-order latches/counter
-; ; ; #define          VIA_T2CH        $0309  ; Timer 2 high-order counter
-; ; ; #define          VIA_SR          $030A  ; Shift Register (Buggy on many Oric, do not use)
-; ; ; #define          VIA_ACR         $030B  ; Auxiliary Control Register
-; ; ; #define          VIA_PCR         $030C  ; Peripheral Control Register
-; ; ; #define          VIA_IFR         $030D  ; Interupt Flag Register
-; ; ; #define          VIA_IER         $030E  ; Interupt Enable Register
-; ; ; #define          VIA_PORTA       $030F  ; Input/Output register A (without handshake)
-; ; ;
-; ; ; #define          VIA2_PORTB      $0320  ; The Telestrat has a second VIA
+
+; ---------------------------------------------------------------------
+#define          load_acc1       $DE7B
+#define          load_acc2       $DD51
+#define          store_acc       $DEAD
+#define          fadd            $DB25
+#define          fsub            $DB0E
+#define          fmul            $DCF0
+#define          fdiv            $DDE7
+#define          fneg            $E271
+#define          fcomp           $DF4C
+#define          cif             $DF24
+
+#define          VIA_PORTB       $0300  ; Input/Output register B
+#define          VIA_PORTAH      $0301  ; Input/Output register A (with handshake)
+#define          VIA_DDRB        $0302  ; Data Direction Register B
+#define          VIA_DDRA        $0303  ; Data Direction Register A
+#define          VIA_T1CL        $0304  ; Timer 1 low-order latches/counter
+#define          VIA_T1CH        $0305  ; Timer 1 high-order counter
+#define          VIA_T1LL        $0306  ; Timer 1 low-order latches
+#define          VIA_T1LH        $0307  ; Timer 1 high-order latches
+#define          VIA_T2LL        $0308  ; Timer 2 low-order latches/counter
+#define          VIA_T2CH        $0309  ; Timer 2 high-order counter
+#define          VIA_SR          $030A  ; Shift Register (Buggy on many Oric, do not use)
+#define          VIA_ACR         $030B  ; Auxiliary Control Register
+#define          VIA_PCR         $030C  ; Peripheral Control Register
+#define          VIA_IFR         $030D  ; Interupt Flag Register
+#define          VIA_IER         $030E  ; Interupt Enable Register
+#define          VIA_PORTA       $030F  ; Input/Output register A (without handshake)
+
+#define          VIA2_PORTB      $0320  ; The Telestrat has a second VIA

@@ -47,7 +47,6 @@ _file_unpack_raw
 	; Get the unpacked size, and add it to the destination
 	; adress in order to get the end adress.
 	ldy #4
-	clc
 	lda ptr_destination
 	adc (sp),y
 	sta ptr_destination_end+0

@@ -108,13 +108,11 @@ malloc1
 
         ldx _heapend+1          ; temp=heapend
         lda _heapend
-        jmp malloc2b            ; ...and skip the temp=next load below
 
 malloc2
         ldx tmp4+1              ; temp=next
         lda tmp4
 
-malloc2b
         sec                     ; (temp)len=temp-start
         sbc tmp3
         tay                     ; y=low byte

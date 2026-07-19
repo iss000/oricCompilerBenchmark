@@ -8,18 +8,19 @@ _free
         lda (sp),y
 
 _freemc                         ; machine code entry pt, A=lo(p), X=hi(p)
-        cpx #0                  ; if(!p) return -- test the pointer passed in A/X.
-        bne freemc1             ; (This entry does NOT take the arg on the C stack,
-        cmp #0                  ;  so the old (sp)-based null check was wrong and
-        bne freemc1             ;  could skip a valid free, e.g. when realloc calls
-        rts                     ;  _freemc directly.)
-freemc1
         sec
         sbc _heapovh
         sta tmp0
         txa
         sbc #0
         sta tmp0+1
+
+        lda (sp),y              ; if(!p)return
+        dey
+        ora (sp),y
+        bne free1
+
+        rts
 
 free1
         lda #<(_heapdesc)     ; (tmp1) desc = &heapdesc
@@ -53,11 +54,9 @@ free2
         lda (tmp2),y
         sta (tmp1),y
 
-        lda _nheapdesc          ; nheapdesc-- (16-bit, borrow-correct)
-        bne freedeclo           ; low byte != 0 -> no borrow into high
-        dec _nheapdesc+1        ; borrow: decrement the high byte first
-freedeclo
-        dec _nheapdesc          ; decrement the low byte
+        dec _nheapdesc          ; nheapdesc--
+        bpl free3
+        dec _nheapdesc+1
 
 free3
         sec                     ; nheapbytes-=next->len
