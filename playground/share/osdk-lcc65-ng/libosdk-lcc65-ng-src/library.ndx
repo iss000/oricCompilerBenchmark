@@ -1,10 +1,6 @@
 -header.s
 	_exit
 	exit
-	true
-	false
-	retzero
-	reterr
 	load_acc1
 	load_acc2
 	store_acc
@@ -17,6 +13,11 @@
 -frame.s
 	enter
 	leave
+-retval.s
+	true
+	false
+	retzero
+	reterr
 -tail.s
 	endcode
 -irq.s
@@ -51,6 +52,7 @@
 	_gotoxy
 -gpchar.s
 	_getchar
+	__putc
 	_putchar
 	putchar
 	putchar2
@@ -58,7 +60,6 @@
 	_gets
 	gets
 -conio.s
-	__putc
 	__puts
 -long32ws.s
 	lscratch
