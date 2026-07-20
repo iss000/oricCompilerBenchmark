@@ -1,1 +1,1 @@
-var date_speed = "2026-07-19";
+var date_speed = "2026-07-20";
