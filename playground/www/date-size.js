@@ -1,1 +1,1 @@
-var date_size = "2026-07-20";
+var date_size = "2026-07-27";
