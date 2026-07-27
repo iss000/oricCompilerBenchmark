@@ -3,7 +3,7 @@ ofile=${1}; shift
 ifile=${1}; shift
 
 # ### OSDK native
-MACROS="${BASE}/macro/macros-1.40.h"
+MACROS="${BASE}/macro/macros.h"
 C1FLAGS="-DXA -Wall -lang-c++"
 
 # -O0 no optimization
@@ -18,7 +18,7 @@ CFLAGS="${CFLAGS} ${OPT}"
 NFLAG=$(basename ${ifile})
 NFLAG="${NFLAG//[^[:alnum:]]/_}"
 
-RCC=${RCC:-compiler-1.40}
+RCC=${RCC:-compiler}
 # RCC=${RCC:-lcc65}
 
 #TODO: why cpp doesn't work on second call ???
@@ -26,7 +26,7 @@ RCC=${RCC:-compiler-1.40}
 ${BASE}/bin/cpp ${C1FLAGS} -E -MMD ${ofile/.o/.d} ${INCLUDES} ${ifile} -o ${ofile/.o/.c1} \
 && ${BASE}/bin/${RCC} ${CFLAGS} -N"${NFLAG}" ${ofile/.o/.c1} ${ofile/.o/.c2} \
 && cpp ${C1FLAGS} -imacros ${MACROS} -traditional -P ${ofile/.o/.c2} ${ofile/.o/.c3} \
-&& ${BASE}/bin/macrosplitter	${ofile/.o/.c3} ${ofile/.o/.s} \
+&& ${BASE}/bin/macrosplitter -O ${ofile/.o/.c3} ${ofile/.o/.s} \
 && dos2unix ${ofile/.o/.s} >/dev/null 2>&1 \
 && touch ${ofile}
 

@@ -3,7 +3,7 @@ var compilers = [
   'llvm-mos',
   'vbcc',
   'osdk-lcc65',
-  'osdk-lcc65-ng',
+  'osdk-lcc65-1.x',
   'kickc',
   'sdcc',
   // 'gcc-6502',

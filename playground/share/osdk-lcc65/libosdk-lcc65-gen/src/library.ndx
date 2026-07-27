@@ -1,12 +1,6 @@
 -header.s
-	enter
-	leave
 	_exit
 	exit
-	true
-	false
-	retzero
-	reterr
 	load_acc1
 	load_acc2
 	store_acc
@@ -16,8 +10,14 @@
 	fdiv
 	fneg
 	fcomp
-	cif
-	cfi
+-frame.s
+	enter
+	leave
+-retval.s
+	true
+	false
+	retzero
+	reterr
 -tail.s
 	endcode
 -irq.s
@@ -52,12 +52,45 @@
 	_gotoxy
 -gpchar.s
 	_getchar
+	__putc
 	_putchar
 	putchar
 	putchar2
 	_puts
 	_gets
 	gets
+-conio.s
+	__puts
+-long32ws.s
+	lscratch
+	lwork
+	lrem
+	lsign
+	ldtmp
+-long32add.s
+	ladd32
+	lsub32
+-long32log.s
+	land32
+	lor32
+	lxor32
+	lcom32
+-long32neg.s
+	lneg32
+-long32mul.s
+	lmul32
+-long32div.s
+	ldiv32u
+	lmod32u
+	ldiv32i
+	lmod32i
+-long32shl.s
+	llsh32
+	lrshl32
+	lasr32
+-long32cmp.s
+	lcmp32u
+	lcmp32i
 -graphics.s
 	_curset
 	_curmov
@@ -121,9 +154,15 @@
 	_doke
 	_call
 	_bang
+-atoi.s
+	_atoi
+-float.s
+	cif
+	cfi
 -printf.s
 	_printf
     _sprintf
+	_fprintf
 -lprintf.s
 	_lprintf
 -scanf.s
@@ -242,8 +281,12 @@
 	_OsdkTableMod6
 -overlay.s
 	_is_overlay_enabled
+-zeropage.s
+    _zp_swap
 -sedoric.s
     _sedoric
+    _sed_savefile
+    _sed_loadfile
 -joystick.s
     _joystick_type_select
     _joystick_read
